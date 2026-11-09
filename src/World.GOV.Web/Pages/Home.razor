@@ -1,0 +1,75 @@
+@page "/"
+@inject PortalDataService Data
+
+<PageTitle>Overview · World.GOV</PageTitle>
+
+<section class="hero-panel">
+    <div>
+        <p class="eyebrow">WORLD.GOV / DENMARK.NET</p>
+        <h1>Clean code.<br />Broken politics.</h1>
+        <p class="hero-copy">Discover real history through the paperwork of a fictional government software system.</p>
+        <div class="hero-actions"><a class="button-primary" href="start">Start exploring →</a><a class="text-link" href="incidents">Browse all incidents</a></div>
+    </div>
+    <div class="hero-state" aria-label="Technical build status">
+        <span class="state-label">TECHNICAL BUILD</span>
+        <strong class="state-value">@(Data.BuildReport?.BuildStatus ?? "NOT REPORTED")</strong>
+        <span class="state-note">Domain diagnostics are reported separately.</span>
+    </div>
+</section>
+
+<div class="dashboard-grid">
+    <section class="metric-card"><span class="metric-label">REGISTERED INCIDENTS</span><strong class="metric-value">@Data.Incidents.Count</strong><span class="metric-foot">Sourced historical entries</span></section>
+    <section class="metric-card"><span class="metric-label">COUNTRY MODULES</span><strong class="metric-value">@Data.Countries.Count</strong><span class="metric-foot">Data-first and extensible</span></section>
+    <section class="metric-card metric-card-accent"><span class="metric-label">GOV DIAGNOSTICS</span><strong class="metric-value">@Data.Diagnostics.Count</strong><span class="metric-foot">Satire · not compiler errors</span></section>
+    <section class="metric-card"><span class="metric-label">SOURCE REFERENCES</span><strong class="metric-value">@Data.Incidents.Sum(item => item.Historical.Sources.Count)</strong><span class="metric-foot">Listed with each factual account</span></section>
+</div>
+
+<div class="content-grid dashboard-content">
+    <section class="panel">
+        <div class="panel-heading">
+            <div><p class="eyebrow">REGISTER</p><h2>From the historical record</h2></div>
+            <a class="text-link" href="incidents">Open incident explorer <span aria-hidden="true">→</span></a>
+        </div>
+        @if (Data.Incidents.Count == 0)
+        {
+            <p class="muted">No incidents have been published.</p>
+        }
+        else
+        {
+            <div class="incident-list">
+                @foreach (var incident in Data.Incidents.OrderByDescending(item => item.Date).Take(5))
+                {
+                    <a class="incident-row" href="@($"incident/{incident.Id}")">
+                        <span class="incident-date">@incident.Date</span>
+                        <span class="incident-title">@IncidentLocalization.Title(incident, SelectedLocale)<small>@incident.Country · @IncidentLocalization.Category(incident, SelectedLocale)</small></span>
+                        <span class="evidence-pill">@IncidentLocalization.EvidenceStatus(incident, SelectedLocale)</span>
+                    </a>
+                }
+            </div>
+        }
+    </section>
+
+    <aside class="panel status-panel">
+        <p class="eyebrow">SYSTEM NOTE</p>
+        <h2>Operational status does not imply correct behavior.</h2>
+        <p>Facts, uncertainty, and satire are stored as separate parts of one incident record.</p>
+        <div class="status-divider"></div>
+        <p class="one-liner">@CurrentOneLiner</p>
+        <a class="text-link" href="about">How to read this portal <span aria-hidden="true">→</span></a>
+    </aside>
+</div>
+
+@code {
+    [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
+    private static readonly string[] OneLiners =
+    [
+        "Responsible department: pending cross-departmental confirmation.",
+        "Compliance: measured using the approved definition of compliance.",
+        "Open items are monitored by the team that owns the monitoring process.",
+        "The status indicator is green. The historical record is more nuanced."
+    ];
+
+    private string CurrentOneLiner { get; } = OneLiners[Random.Shared.Next(OneLiners.Length)];
+
+    protected override Task OnInitializedAsync() => Data.EnsureLoadedAsync();
+}

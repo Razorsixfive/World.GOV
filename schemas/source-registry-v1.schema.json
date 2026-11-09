@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World.GOV source registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sources"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "publisher", "url", "publishedDate", "accessedDate", "language", "notes"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^SRC-[A-Z]{2,3}-[A-Za-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": ["string", "null"] },
+          "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "publishedDate": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+          "accessedDate": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+          "language": { "type": ["string", "null"] },
+          "notes": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

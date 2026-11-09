@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CountryName>$([System.IO.Path]::GetFileName('$(MSBuildProjectDirectory)'))</CountryName>
+    <AssemblyName>$(CountryName)</AssemblyName>
+    <CountrySlug>$([System.String]::Copy('$(AssemblyName)').Replace('.NET', '').ToLowerInvariant())</CountrySlug>
+    <RootNamespace>World.GOV.CountryTemplate</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\World.GOV.Core\World.GOV.Core.csproj" />
+    <EmbeddedResource Include="..\..\countries\$(CountrySlug)\country.json"
+                      LogicalName="$(AssemblyName).country.json" />
+    <EmbeddedResource Include="..\..\countries\$(CountrySlug)\incidents\*.json"
+                      LogicalName="$(AssemblyName).Incidents.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "SRC-XX-001",
+      "title": "REPLACE: title of a verified historical source",
+      "publisher": "REPLACE: institution or publisher",
+      "url": "https://example.org/replace-with-real-source",
+      "publishedDate": null,
+      "accessedDate": null,
+      "language": "en",
+      "notes": "REPLACE: primary source, context, and limitations"
+    }
+  ]
+}

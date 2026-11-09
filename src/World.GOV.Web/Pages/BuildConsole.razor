@@ -1,0 +1,137 @@
+@page "/build"
+@inject PortalDataService Data
+
+<PageTitle>Build console · World.GOV</PageTitle>
+
+<section class="page-intro"><p class="eyebrow">TECHNICAL PIPELINE</p><h1>Build console</h1><p>Authentic build status is reported separately from the theatrical GOV domain report.</p></section>
+
+<section class="panel gov-status-card" aria-label="World.GOV simulated government status">
+    <div class="gov-status-heading">
+        <div><p class="eyebrow">WORLD.GOV / @SelectedModuleLabel</p><h2>Government status</h2></div>
+        <div class="gov-status-tools">
+            <label class="gov-module-select"><span>Country module</span><select @bind="SelectedCountryId" aria-label="Choose country module"><option value="@AllCountries">All countries</option>@foreach (var module in RegisteredModules){<option value="@module.Id">@module.ExtensionAssembly</option>}</select></label>
+            <span class="gov-status-pill">OPERATIONAL</span>
+        </div>
+    </div>
+    <div class="gov-status-metrics">
+        <div><span>Build</span><strong class="passing">@GovernmentBuildStatus</strong></div>
+        <div><span>Compliance</span><strong>100%</strong></div>
+        <div><span>Unresolved incidents</span><strong>2,401</strong></div>
+        <div><span>Responsible department</span><strong>UNKNOWN</strong></div>
+    </div>
+    <p class="gov-status-footnote">* Operational status does not imply correct behavior</p>
+    <p class="gov-status-disclaimer">Compliance and unresolved-incident figures are fictional GOV status indicators. Compiler status is reported separately below.</p>
+    <section class="simulated-terminal module-status-terminal" aria-label="Selected country module simulated command output">
+        <div class="terminal-top"><span class="terminal-dots" aria-hidden="true">● ● ●</span><strong>@(SelectedCountryId == AllCountries ? "ALL MODULES · READ ONLY" : $"{SelectedModule?.ExtensionAssembly} · READ ONLY")</strong><span>SIMULATED CMD</span></div>
+        <pre><code>@string.Join(Environment.NewLine, SimulatedCommandLines)</code></pre>
+        <p>Module names and GOV findings come from the published records; build status comes from the actual workspace report. The command display is read-only and does not execute shell commands.</p>
+    </section>
+</section>
+
+<div class="console-grid">
+    <section class="panel build-report-card">
+        <div class="panel-heading"><div><p class="eyebrow">ACTUAL BUILD RESULT</p><h2>Technical pipeline</h2></div><span class="build-badge">@(Data.BuildReport?.BuildStatus ?? "NOT REPORTED")</span></div>
+        <dl class="report-list">
+            <div><dt>Status source</dt><dd>@(Data.BuildReport?.StatusSource ?? "No report published")</dd></div>
+            <div><dt>Commit</dt><dd><code>@(Data.BuildReport?.Commit ?? "Not recorded")</code></dd></div>
+            <div><dt>Workflow</dt><dd>@(Data.BuildReport?.Workflow ?? "Local or unpublished")</dd></div>
+            <div><dt>Reported at</dt><dd>@(Data.BuildReport is null ? "Not reported" : Data.BuildReport.GeneratedAt.ToString("u"))</dd></div>
+        </dl>
+        <p class="muted">This is the build result supplied for this publication. It does not monitor later workflow attempts. A missing result is displayed as Not reported.</p>
+    </section>
+    <section class="panel domain-report-card">
+        <div class="panel-heading"><div><p class="eyebrow">SATIRICAL DOMAIN REPORT</p><h2>GOV diagnostics</h2></div><span class="critical-count">@Data.Diagnostics.Count</span></div>
+        <p>@(Data.BuildReport?.DiagnosticStatusLabel ?? "Domain satire is not technical build output.")</p>
+        <div class="diagnostic-list">
+            @foreach (var diagnostic in Data.Diagnostics.Take(6))
+            {
+                var incident = Data.FindIncident(diagnostic.IncidentId);
+                <div class="diagnostic-row"><span class="diagnostic-severity">@diagnostic.Severity</span><span><strong>@diagnostic.Id</strong><small>@diagnostic.Message</small>@if (incident is not null && incident.Satire.Standards.Count > 0){<small>Standards: @string.Join(", ", incident.Satire.Standards)</small>}</span><span class="diagnostic-policy">@(diagnostic.IgnoredByPolicy ? "IGNORED BY POLICY" : "REVIEW")</span></div>
+            }
+        </div>
+    </section>
+</div>
+
+@code {
+    private const string AllCountries = "ALL";
+    private string SelectedCountryId { get; set; } = "DK";
+    private IEnumerable<CountryDefinition> RegisteredModules => Data.Countries
+        .Where(country => !string.IsNullOrWhiteSpace(country.ExtensionAssembly))
+        .OrderBy(country => country.DisplayName, StringComparer.Ordinal);
+    private CountryDefinition? SelectedModule => RegisteredModules.FirstOrDefault(country => country.Id == SelectedCountryId);
+    private string SelectedModuleLabel => SelectedCountryId == AllCountries
+        ? "ALL COUNTRIES"
+        : SelectedModule?.ExtensionAssembly?.ToUpperInvariant() ?? "ALL COUNTRIES";
+    private string GovernmentBuildStatus => Data.BuildReport?.BuildStatus switch
+    {
+        "Succeeded" => "PASSING",
+        "Failed" => "FAILING",
+        null => "NOT REPORTED",
+        var status => status.ToUpperInvariant()
+    };
+    private IReadOnlyList<string> SimulatedCommandLines
+    {
+        get
+        {
+            var allModules = SelectedCountryId == AllCountries || SelectedModule is null;
+            var diagnostics = (allModules
+                ? Data.Diagnostics
+                : Data.Diagnostics.Where(item => item.Country == SelectedModule!.Id)).ToArray();
+            var ignoredCount = diagnostics.Count(item => item.IgnoredByPolicy);
+            var command = allModules
+                ? "C:\\WORLD.GOV> dotnet build World.GOV.sln"
+                : $"C:\\WORLD.GOV> dotnet build src\\{SelectedModule!.ExtensionAssembly}\\{SelectedModule.ExtensionAssembly}.csproj";
+            var lines = new List<string>
+            {
+                command,
+                "  Determining projects to restore...",
+                "  Restore completed.",
+                ""
+            };
+
+            if (allModules)
+            {
+                foreach (var country in Data.Countries.OrderBy(item => item.DisplayName, StringComparer.Ordinal))
+                {
+                    var moduleName = country.ExtensionAssembly ?? $"{country.DisplayName} (data-only)";
+                    var moduleStatus = country.ExtensionAssembly is null ? "DATA ONLY" : "REGISTERED";
+                    lines.Add($"  {moduleName,-35} {moduleStatus}");
+                }
+            }
+            else
+            {
+                lines.Add($"  {SelectedModule!.ExtensionAssembly} -> C:\\WORLD.GOV\\src\\{SelectedModule.ExtensionAssembly}\\bin\\Release\\{SelectedModule.ExtensionAssembly}.dll");
+            }
+
+            lines.Add("");
+            lines.Add("GOV DOMAIN DIAGNOSTICS (not compiler diagnostics):");
+            foreach (var diagnostic in diagnostics.Take(4))
+            {
+                var severity = diagnostic.Severity switch
+                {
+                    "CRITICAL" => "error",
+                    "WARNING" => "warning",
+                    _ => "info"
+                };
+                var policy = diagnostic.IgnoredByPolicy ? " [ignored by policy]" : " [review required]";
+                lines.Add($"{severity} {diagnostic.Id} [{diagnostic.Country}]: {diagnostic.Message}{policy}");
+            }
+            if (diagnostics.Length > 4)
+                lines.Add($"... {diagnostics.Length - 4} additional GOV diagnostics listed in the report below.");
+
+            lines.Add($"GOV diagnostics ignored by policy: {ignoredCount}");
+            lines.Add($"Compliance: 100% | Unresolved incidents: 2,401 | Responsible department: UNKNOWN");
+            lines.Add($"Build: {GovernmentBuildStatus} | Compiler errors: 0");
+            lines.Add("* Operational status does not imply correct behavior");
+            lines.Add("C:\\WORLD.GOV> _");
+            return lines;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Data.EnsureLoadedAsync();
+        if (!RegisteredModules.Any(country => country.Id == SelectedCountryId))
+            SelectedCountryId = AllCountries;
+    }
+}

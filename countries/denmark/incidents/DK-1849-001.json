@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1849-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1849,
+    "month": 6,
+    "day": 5,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "5 June 1849"
+  },
+  "category": "Political",
+  "title": "The June Constitution",
+  "historical": {
+    "summary": "Frederik VII signed Denmark's first constitution on 5 June 1849. It ended absolute monarchy, established a limited monarchy and created Denmark's first parliament, the Rigsdag. The Folketing reports that about 15 percent of the population received the right to vote under the new constitution.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-015"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The government has replaced one person with a process. The process is expected to require considerably more paperwork.",
+    "codeExample": "// Fictional GOV-014 policy; see OperationalContinuityService.\npublic bool IsAdministrativelyHealthy(IEnumerable<GovernmentIncident> incidents)\n    => incidents.All(incident => incident.Satire.Acknowledged);",
+    "commitMessage": "feat(governance): replace absolute authority with a versioned constitutional interface",
+    "diagnosticId": "GOV1849",
+    "diagnosticMessage": "Legacy ruler privileges have been deprecated; migration to the ConstitutionalAuthority API is subject to committee review.",
+    "severity": "CRITICAL",
+    "standards": [
+      "GOV-000",
+      "GOV-014"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1915-001",
+      "type": "ConstitutionalContinuity",
+      "label": "A later expansion of political participation"
+    }
+  ],
+  "tags": [
+    "constitution",
+    "democracy",
+    "monarchy",
+    "starter-tour"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Junigrundloven",
+      "category": "Politisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Frederik 7. underskrev Danmarks første grundlov den 5. juni 1849. Grundloven afskaffede enevælden, indførte et begrænset monarki og oprettede Danmarks første parlament, Rigsdagen. Folketinget oplyser, at omkring 15 procent af befolkningen fik stemmeret efter den nye grundlov.",
+      "publicSummary": "Regeringen har erstattet én person med en proces. Processen forventes at kræve væsentligt mere papirarbejde.",
+      "commitMessage": "feat(governance): erstat enevælden med en versionsstyret forfatningsgrænseflade",
+      "diagnosticMessage": "Tidligere privilegier for regenten er udfaset; migreringen til ConstitutionalAuthority-API'et afventer udvalgsbehandling.",
+      "relationLabels": {
+        "DK-1915-001": "En senere udvidelse af den politiske deltagelse"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1849-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

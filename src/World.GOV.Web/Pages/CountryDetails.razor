@@ -1,0 +1,31 @@
+@page "/country/{CountryId}"
+@inject PortalDataService Data
+
+<PageTitle>@(Country?.DisplayName ?? "Country") · World.GOV</PageTitle>
+
+@if (Country is null)
+{
+    <section class="page-intro"><p class="eyebrow">COUNTRY REGISTRY</p><h1>Country not found</h1><p>This module is not in the current publication manifest.</p><a class="text-link" href="countries">Return to countries</a></section>
+}
+else
+{
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="countries">Countries</a><span aria-hidden="true">/</span><span>@Country.Id</span></nav>
+    <section class="page-intro country-detail-intro"><p class="eyebrow">@Country.Id · @Country.NativeName</p><h1>@Country.DisplayName</h1><p>Historical coverage from @Country.HistoricalCoverage.StartYear · Published locales: @string.Join(", ", Country.SupportedLocales)</p></section>
+    <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">REGISTER</p><h2>Published incidents</h2></div><span class="count-badge">@CountryIncidents.Count()</span></div>
+        <div class="incident-list">
+            @foreach (var incident in CountryIncidents.OrderBy(item => item.Date))
+            {
+                <a class="incident-row" href="@($"incident/{incident.Id}")"><span class="incident-date">@incident.Date</span><span class="incident-title">@IncidentLocalization.Title(incident, SelectedLocale)<small>@IncidentLocalization.Category(incident, SelectedLocale)</small></span><span class="evidence-pill">@IncidentLocalization.EvidenceStatus(incident, SelectedLocale)</span></a>
+            }
+        </div>
+    </section>
+}
+
+@code {
+    [Parameter] public string CountryId { get; set; } = string.Empty;
+    [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
+    private CountryDefinition? Country => Data.FindCountry(CountryId);
+    private IEnumerable<GovernmentIncident> CountryIncidents => Data.Incidents.Where(item => item.Country == CountryId);
+    protected override Task OnInitializedAsync() => Data.EnsureLoadedAsync();
+}

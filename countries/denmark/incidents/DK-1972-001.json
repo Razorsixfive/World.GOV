@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1972-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1972,
+    "month": 10,
+    "day": 2,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "2 October 1972"
+  },
+  "category": "International",
+  "title": "Denmark Votes to Join the European Communities",
+  "historical": {
+    "summary": "In the 2 October 1972 referendum, 63.3% of valid votes supported Danish membership in the European Communities and 36.7% opposed it; turnout was 90.1%. Denmark joined the Communities on 1 January 1973.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-011",
+      "SRC-DK-012",
+      "SRC-DK-020"
+    ]
+  },
+  "satire": {
+    "publicSummary": "A substantial majority has approved the integration proposal. The implementation plan now enters the separate phase called implementation.",
+    "codeExample": "// Fictional policy pipeline; membership followed the real referendum result.\nif (referendum.Approved)\n    ScheduleAccession();",
+    "commitMessage": "feat(integration): schedule accession after national approval",
+    "diagnosticId": "GOV1972",
+    "diagnosticMessage": "Referendum approved the membership proposal; implementation is scheduled for the following year.",
+    "severity": "INFO",
+    "standards": [
+      "GOV-000",
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1973-001",
+      "type": "Implementation",
+      "label": "Membership took effect on 1 January 1973"
+    }
+  ],
+  "tags": [
+    "referendum",
+    "Europe",
+    "European Communities",
+    "integration"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Danmark stemmer for medlemskab af De Europæiske Fællesskaber",
+      "category": "Internationalt",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Ved folkeafstemningen den 2. oktober 1972 var 63,3 procent af de gyldige stemmer for dansk medlemskab af De Europæiske Fællesskaber, mens 36,7 procent var imod; valgdeltagelsen var 90,1 procent. Danmark blev medlem den 1. januar 1973.",
+      "publicSummary": "Et stort flertal har godkendt integrationsforslaget. Implementeringsplanen går nu videre til den særskilte fase, der hedder implementering.",
+      "commitMessage": "feat(integration): planlæg tiltrædelse efter national godkendelse",
+      "diagnosticMessage": "Folkeafstemningen godkendte medlemskabsforslaget; gennemførelsen er planlagt til det følgende år.",
+      "relationLabels": {
+        "DK-1973-001": "Medlemskabet trådte i kraft den 1. januar 1973"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1972-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

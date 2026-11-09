@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A sourced historical record presented through a fictional government software system." />
+    <meta name="theme-color" content="#102b43" />
+    <title>World.GOV · Denmark.NET</title>
+    <base href="/" />
+    <link rel="preload" id="webassembly" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script type="importmap"></script>
+</head>
+<body>
+    <div id="app">
+        <noscript>World.GOV needs JavaScript to load the interactive historical record.</noscript>
+        <div class="boot-screen" role="status" aria-live="polite">
+            <span class="brand-seal" aria-hidden="true">WG</span>
+            <p>Loading the public record…</p>
+        </div>
+    </div>
+    <div id="blazor-error-ui" role="alert">
+        The portal encountered a technical error.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss" aria-label="Dismiss">×</span>
+    </div>
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+</body>
+</html>

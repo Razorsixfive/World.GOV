@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1915-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1915,
+    "month": 6,
+    "day": 5,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "5 June 1915"
+  },
+  "category": "Social",
+  "title": "The 1915 Constitutional Reform",
+  "historical": {
+    "summary": "The constitutional amendment of 5 June 1915 extended the right to vote and stand for election to women and several other groups, removed privileged voting rules for the Landsting, and introduced the possibility of referendums. Women first voted in a parliamentary election in 1918.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-015",
+      "SRC-DK-016"
+    ]
+  },
+  "satire": {
+    "publicSummary": "A review of the voter list has revealed that a rather large number of citizens were missing. The administration thanks everyone for their patience.",
+    "commitMessage": "feat(democracy): expand voter permissions after extended stakeholder review",
+    "diagnosticId": "GOV1915",
+    "diagnosticMessage": "The electorate schema has been expanded; several legacy access rules remain under review.",
+    "severity": "CRITICAL",
+    "standards": [
+      "GOV-000",
+      "GOV-014"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1953-001",
+      "type": "ConstitutionalContinuity",
+      "label": "A later constitutional reform"
+    }
+  ],
+  "tags": [
+    "suffrage",
+    "constitution",
+    "democracy",
+    "starter-tour"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Grundlovsændringen i 1915",
+      "category": "Samfund",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Grundlovsændringen den 5. juni 1915 gav kvinder og flere andre grupper ret til at stemme og stille op til valg, fjernede privilegerede valgregler for Landstinget og indførte mulighed for folkeafstemninger. Kvinder stemte første gang ved et folketingsvalg i 1918.",
+      "publicSummary": "En gennemgang af valglisten viste, at et ganske betydeligt antal borgere manglede. Administrationen takker alle for tålmodigheden.",
+      "commitMessage": "feat(democracy): udvid vælgerrettigheder efter en længere høring af interessenter",
+      "diagnosticMessage": "Vælgernes datamodel er udvidet; flere ældre adgangsregler er stadig under revision.",
+      "relationLabels": {
+        "DK-1953-001": "En senere grundlovsændring"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1915-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

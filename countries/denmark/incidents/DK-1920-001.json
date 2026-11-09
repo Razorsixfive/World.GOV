@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1920-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1920,
+    "month": 6,
+    "day": 15,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "15 June 1920"
+  },
+  "category": "Political",
+  "title": "The 1920 Reunification of Southern Jutland",
+  "historical": {
+    "summary": "After the First World War, Schleswig's future was decided in two voting zones. In Zone I (North Schleswig), about 75% voted for Denmark on 10 February 1920; in Zone II, including Flensburg, the majority voted for Germany on 14 March. The border followed the zonal results, and Southern Jutland became part of Denmark on 15 June 1920. This event does not mean that all of historic Schleswig joined Denmark.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-005",
+      "SRC-DK-006"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The boundary has been updated according to the recorded votes. The map review committee has confirmed that the map is, in fact, the map.",
+    "codeExample": "// Fictional administrative analogy; historical borders are not software configs.\nvar result = referendum.ResolveByZone();\nApplyBoundary(result);",
+    "commitMessage": "feat(boundary): apply referendum results by zone after extensive map review",
+    "diagnosticId": "GOV1920",
+    "diagnosticMessage": "Two electoral zones returned different preferences; boundary implementation follows the agreed zone-specific result.",
+    "severity": "WARNING",
+    "standards": [
+      "GOV-000",
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1915-001",
+      "type": "DemocraticContext",
+      "label": "An earlier expansion of electoral participation"
+    }
+  ],
+  "tags": [
+    "Schleswig",
+    "referendum",
+    "border",
+    "reunification"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Genforeningen af Sønderjylland i 1920",
+      "category": "Politisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Efter Første Verdenskrig blev Slesvigs fremtid afgjort i to afstemningszoner. I Zone I (Nordslesvig) stemte omkring 75 procent for Danmark den 10. februar 1920; i Zone II, herunder Flensborg, stemte flertallet for Tyskland den 14. marts. Grænsen fulgte resultaterne i de to zoner, og Sønderjylland blev en del af Danmark den 15. juni 1920. Det betyder ikke, at hele det historiske Slesvig blev dansk.",
+      "publicSummary": "Grænsen er blevet opdateret i overensstemmelse med de registrerede stemmer. Kortudvalget har bekræftet, at kortet faktisk er kortet.",
+      "commitMessage": "feat(boundary): anvend afstemningsresultater pr. zone efter omfattende kortgennemgang",
+      "diagnosticMessage": "De to afstemningszoner havde forskellige flertalsønsker; grænsen blev fastlagt efter det aftalte resultat i hver zone.",
+      "relationLabels": {
+        "DK-1915-001": "En tidligere udvidelse af den demokratiske deltagelse"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1920-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

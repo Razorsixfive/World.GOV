@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore World.GOV.sln
+
+      - name: Build
+        run: dotnet build World.GOV.sln --configuration Release --no-restore
+
+      - name: Run regression tests
+        run: dotnet test World.GOV.sln --configuration Release --no-build
+
+      - name: Validate country records
+        run: dotnet run --project src/World.GOV.Cli/World.GOV.Cli.csproj --configuration Release --no-build -- validate
+
+      - name: Export static portal data
+        run: dotnet run --project src/World.GOV.Cli/World.GOV.Cli.csproj --configuration Release --no-build -- export --output src/World.GOV.Web/wwwroot/data --build-status succeeded
+
+      - name: Publish static web app
+        run: dotnet publish src/World.GOV.Web/World.GOV.Web.csproj --configuration Release --no-restore --output .artifacts/web

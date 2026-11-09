@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "SRC-DE-001",
+      "title": "Besatzungsregime in Dänemark — LeMO, Deutsches Historisches Museum",
+      "publisher": "Deutsches Historisches Museum",
+      "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/besatzungsregime-in-daenemark",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "de-DE",
+      "notes": null
+    },
+    {
+      "id": "SRC-DE-002",
+      "title": "The German Occupation 1940–1945 — National Museum of Denmark",
+      "publisher": "National Museum of Denmark",
+      "url": "https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": null
+    },
+    {
+      "id": "SRC-DE-003",
+      "title": "Der Weg zur deutschen Einheit — Deutscher Bundestag",
+      "publisher": "Deutscher Bundestag",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/deutsche-einheit-202098",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "de-DE",
+      "notes": null
+    }
+  ]
+}

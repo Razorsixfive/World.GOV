@@ -1,0 +1,46 @@
+@page "/start"
+@inject PortalDataService Data
+
+<PageTitle>@Text("Start exploring", "Start rundvisningen") · World.GOV</PageTitle>
+
+<section class="page-intro"><p class="eyebrow">@Text("A SHORT TOUR OF THE PUBLIC RECORD", "EN KORT RUNDTUR I DEN HISTORISKE DOKUMENTATION")</p><h1>@Text("History has a change log.", "Historien har en ændringslog.")</h1><p>@Text("Follow four Danish milestones. Read what happened, inspect the evidence, and discover the fictional administrative response.", "Følg fire danske milepæle. Læs, hvad der skete, undersøg kilderne, og se den fiktive administrative reaktion.")</p></section>
+
+@if (Current is not null)
+{
+    <nav class="journey-steps" aria-label="@Text("Tour chapters", "Rundturens kapitler")">
+        @for (var i = 0; i < Entries.Count; i++)
+        {
+            <a href="@($"start?step={i + 1}")" aria-current="@(i == Index ? "step" : null)" class="@(i == Index ? "current" : "")"><span>@(i + 1)</span>@Entries[i].Date.StartYear?.ToString("D4")</a>
+        }
+    </nav>
+    <article class="panel journey-card" aria-live="polite">
+        <p class="eyebrow">@Text("CHAPTER", "KAPITEL") @(Index + 1) @Text("OF", "AF") @Entries.Count · @Current.Date</p>
+        <h2>@IncidentLocalization.Title(Current, SelectedLocale)</h2>
+        <p class="fact-summary">@IncidentLocalization.Summary(Current, SelectedLocale)</p>
+        <div class="notice notice-info"><strong>@Text("Fictional administrative memo", "Fiktivt administrativt notat")</strong><span>@IncidentLocalization.PublicSummary(Current, SelectedLocale)</span></div>
+        <a class="button-primary" href="@($"incident/{Current.Id}")">@Text("Read the evidence & code joke →", "Læs dokumentationen og kodejoken →")</a>
+        <details class="reflection"><summary>@Text("Pause for a moment", "Stop op et øjeblik")</summary><p>@Text("What changed in this event? Which part of this page is supported by the source, and which part was invented for the joke?", "Hvad ændrede sig ved denne begivenhed? Hvilke dele af siden understøttes af kilder, og hvilke er opfundet til joken?")</p><p>@Text("The historical account is the paragraph above the memo. The memo is fictional. Follow the incident link to check the original source.", "Den historiske redegørelse står ovenfor notatet. Notatet er fiktivt. Følg hændelseslinket for at se den oprindelige kilde.")</p></details>
+    </article>
+    <nav class="pagination" aria-label="@Text("Tour navigation", "Navigation i rundturen")">
+        @if (Index > 0) { <a class="button-secondary" href="@($"start?step={Index}")">@Text("← Previous chapter", "← Forrige kapitel")</a> }
+        @if (Index < Entries.Count - 1) { <a class="button-primary" href="@($"start?step={Index + 2}")">@Text("Next chapter →", "Næste kapitel →")</a> }
+        else { <a class="button-primary" href="history">@Text("Continue into the timeline →", "Fortsæt til tidslinjen →")</a> }
+    </nav>
+}
+else
+{
+    <p role="status">@(Ready ? Text("The introductory records are not available in this publication.", "Rundturens hændelser findes ikke i denne udgivelse.") : Text("Loading the tour…", "Rundturen indlæses…"))</p>
+    <a href="incidents">@Text("Browse available incidents", "Se tilgængelige hændelser")</a>
+}
+
+@code {
+    [SupplyParameterFromQuery(Name = "step")] public int? Step { get; set; }
+    [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
+    private bool IsDanish => Current is not null && SelectedLocale.StartsWith("da", StringComparison.OrdinalIgnoreCase) && IncidentLocalization.HasTranslation(Current, SelectedLocale);
+    private string Text(string english, string danish) => IsDanish ? danish : english;
+    private bool Ready;
+    private IReadOnlyList<GovernmentIncident> Entries => Data.Incidents.Where(item => item.Country == "DK" && item.Tags.Contains("starter-tour", StringComparer.OrdinalIgnoreCase)).OrderBy(item => item.Date).ToArray();
+    private int Index => Math.Clamp((Step ?? 1) - 1, 0, Math.Max(0, Entries.Count - 1));
+    private GovernmentIncident? Current => Entries.Count > 0 ? Entries[Index] : null;
+    protected override async Task OnInitializedAsync() { await Data.EnsureLoadedAsync(); Ready = true; }
+}

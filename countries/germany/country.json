@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "DE",
+  "slug": "germany",
+  "displayName": "Germany",
+  "nativeName": "Deutschland",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US"],
+  "historicalCoverage": { "startYear": 1940, "endYear": 1990 },
+  "incidentFiles": ["incidents/DE-1940-001.json", "incidents/DE-1990-001.json"],
+  "standardFiles": [],
+  "extensionAssembly": null
+}

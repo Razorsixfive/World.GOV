@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "DE-1990-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1990,
+    "month": 10,
+    "day": 3,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "3 October 1990"
+  },
+  "category": "Political",
+  "title": "German Reunification",
+  "historical": {
+    "summary": "On 3 October 1990, the German Democratic Republic joined the Federal Republic of Germany under the accession process agreed in 1990, bringing German reunification into effect.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DE-003"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The administrative merger is complete. Reconciling the filing systems has been assigned to a working group.",
+    "commitMessage": "merge(national-configuration): reconcile two long-running deployment branches",
+    "diagnosticId": "GOV1990",
+    "diagnosticMessage": "Two administrations have been merged; historical records remain distributed across legacy systems.",
+    "severity": "WARNING",
+    "standards": [],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1973-001",
+      "type": "EuropeanContext",
+      "label": "An earlier event in the European Communities timeline"
+    }
+  ],
+  "tags": [
+    "Germany",
+    "reunification",
+    "political"
+  ],
+  "sourcePath": "countries/germany/incidents/DE-1990-001.json",
+  "countryIds": [
+    "DE"
+  ]
+}

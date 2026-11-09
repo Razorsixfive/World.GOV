@@ -1,0 +1,41 @@
+name: Propose a historical incident
+description: Suggest a sourced event for a country module.
+title: "[Incident]: "
+labels: [historical-content]
+body:
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: Country code and module, if known.
+      placeholder: DK / Denmark
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date or date range
+      description: Use YYYY, YYYY-MM, or YYYY-MM-DD where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: factual_summary
+    attributes:
+      label: Factual summary
+      description: Describe what happened and note uncertainty. Keep satire out of this field.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Link credible sources that support the factual summary.
+    validations:
+      required: true
+  - type: textarea
+    id: satire
+    attributes:
+      label: Satirical implementation idea
+      description: Optional fictional commit message, GOV diagnostic, or software metaphor.
+    validations:
+      required: false

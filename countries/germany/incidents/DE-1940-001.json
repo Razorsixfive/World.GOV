@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "DE-1940-001",
+  "globalEventId": "nazi-germany-occupation-of-denmark-1940-1945",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1940,
+    "month": 4,
+    "day": 9,
+    "endYear": 1945,
+    "precision": "range",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "9 April 1940–5 May 1945"
+  },
+  "category": "War",
+  "title": "Nazi Germany Invades and Occupies Denmark",
+  "historical": {
+    "summary": "Nazi Germany launched Operation Weserübung on 9 April 1940, invading and occupying Denmark. German forces maintained the occupation until their surrender in Denmark in May 1945. The occupation constrained Danish sovereignty; Denmark's institutions operating under that pressure did not make the occupation consensual or restore full independence.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DE-001",
+      "SRC-DE-002"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The occupying authority reports cross-border control as operational. The status panel does not report whether the people being governed consented.",
+    "codeExample": "// Fictional systems metaphor; occupation is not a deployment success metric.\nForceControlOfForeignTerritory();\nReportSovereigntyAsConstrained();",
+    "commitMessage": "feat(occupation): extend Nazi German control across the Danish border",
+    "diagnosticId": "GOV1940",
+    "diagnosticMessage": "The invasion imposed Nazi German military control over Denmark and constrained Danish sovereignty.",
+    "severity": "CRITICAL",
+    "standards": [],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1940-001",
+      "type": "SharedHistoricalEventPerspective",
+      "label": "The invasion and occupation from Denmark's perspective"
+    }
+  ],
+  "tags": [
+    "Nazi Germany",
+    "Denmark",
+    "invasion",
+    "occupation",
+    "Second World War",
+    "Europe"
+  ],
+  "sourcePath": "countries/germany/incidents/DE-1940-001.json",
+  "countryIds": [
+    "DE"
+  ]
+}

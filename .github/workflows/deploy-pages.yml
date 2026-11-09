@@ -1,0 +1,83 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      pages: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Restore
+        run: dotnet restore World.GOV.sln
+
+      - name: Build
+        run: dotnet build World.GOV.sln --configuration Release --no-restore
+
+      - name: Run regression tests
+        run: dotnet test World.GOV.sln --configuration Release --no-build
+
+      - name: Validate country records
+        run: dotnet run --project src/World.GOV.Cli/World.GOV.Cli.csproj --configuration Release --no-build -- validate
+
+      - name: Export published data
+        run: dotnet run --project src/World.GOV.Cli/World.GOV.Cli.csproj --configuration Release --no-build -- export --output src/World.GOV.Web/wwwroot/data --build-status succeeded
+
+      - name: Publish Blazor WebAssembly
+        shell: bash
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          dotnet publish src/World.GOV.Web/World.GOV.Web.csproj --configuration Release --no-restore --output .artifacts/web
+          SITE_ROOT="$(find .artifacts/web -maxdepth 4 -name index.html -printf '%h\n' | head -n 1)"
+          if [[ -z "$SITE_ROOT" ]]; then
+            echo "Published index.html was not found."
+            exit 1
+          fi
+          BASE_HREF="${PAGES_BASE_PATH%/}/"
+          sed -i "s#<base href=\"/\" />#<base href=\"$BASE_HREF\" />#" "$SITE_ROOT/index.html"
+          cp "$SITE_ROOT/index.html" "$SITE_ROOT/404.html"
+          echo "SITE_ROOT=$SITE_ROOT" >> "$GITHUB_ENV"
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ env.SITE_ROOT }}
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

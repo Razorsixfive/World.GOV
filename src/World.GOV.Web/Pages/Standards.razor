@@ -1,0 +1,57 @@
+@page "/standards"
+@inject PortalDataService Data
+
+<PageTitle>GOV Standards · World.GOV</PageTitle>
+
+<section class="page-intro"><p class="eyebrow">DOMAIN CONTROL REGISTER</p><h1>GOV standards</h1><p>Fictional standards used to describe governance-domain diagnostics. These records never change compiler or CI results.</p></section>
+
+<div class="standards-layout">
+    <nav class="panel standards-index" aria-label="Standards">
+        <p class="eyebrow">INDEX</p>
+        @foreach (var standard in Data.Standards)
+        {
+            <a class="standard-choice @(Selected == standard ? "active" : "")" href="@($"standards?id={standard.Id}&country={standard.Country}")" aria-current="@(Selected == standard ? "page" : null)"><span>@standard.Id</span><strong>@standard.Title</strong><small>@standard.Country</small></a>
+        }
+        @if (Data.Standards.Count == 0){<p class="muted">No standards have been published.</p>}
+    </nav>
+    <section class="panel standard-detail">
+        @if (Selected is null)
+        {
+            <p class="eyebrow">GOV STANDARDS</p><h2>Select a standard</h2><p>Standards define the fictional domain rules referenced by incident diagnostics.</p>
+        }
+        else
+        {
+            <p class="eyebrow">@Selected.Id · @Selected.Country</p><h2>@Selected.Title</h2>
+            @if (StandardContent is null){<p class="muted">Loading standard text…</p>}
+            else
+            {
+                <div class="standard-content">
+                    @foreach (var line in StandardContent.Split('\n').Select(line => line.Trim()).Where(line => line.Length > 0))
+                    {
+                        if (line.StartsWith("# ")) { continue; }
+                        else if (line.StartsWith("## ")) { <h3>@line[3..]</h3> }
+                        else { <p>@line</p> }
+                    }
+                </div>
+            }
+        }
+    </section>
+</div>
+
+@code {
+    private StandardIndexEntry? Selected { get; set; }
+    private string? StandardContent { get; set; }
+    [SupplyParameterFromQuery(Name = "id")] public string? StandardId { get; set; }
+    [SupplyParameterFromQuery(Name = "country")] public string? Country { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await Data.EnsureLoadedAsync();
+        var standard = StandardId is null ? Data.Standards.FirstOrDefault() : Data.Standards.FirstOrDefault(item => item.Id == StandardId && (Country is null || item.Country == Country));
+        Selected = standard;
+        StandardContent = null;
+        if (standard is null) return;
+        var content = await Data.GetStandardContentAsync(standard.ContentPath);
+        if (Selected == standard) StandardContent = content ?? "This standard could not be loaded. Reload the page to retry.";
+    }
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1945-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1945,
+    "month": 5,
+    "day": 5,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "5 May 1945"
+  },
+  "category": "Political",
+  "title": "Liberation Day and Bornholm's Different Experience",
+  "historical": {
+    "summary": "At 20:35 on 4 May 1945, the BBC announced the German surrender covering Denmark, the Netherlands and north-west Germany; the surrender took effect the next morning, 5 May. This ended the occupation for most of Denmark. Bornholm was not liberated at the same time: Soviet forces bombed the island in May 1945, and Soviet troops remained there until 1946.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-009",
+      "SRC-DK-010"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The national status has changed to liberated. Regional exceptions remain visible because residents are not a footnote in the release notes.",
+    "codeExample": "// Fictional reporting logic; a national flag must not hide local conditions.\nforeach (var region in regions)\n    ReportStatus(region);",
+    "commitMessage": "fix(reporting): include regional status instead of shipping a misleading national green check",
+    "diagnosticId": "GOV1945",
+    "diagnosticMessage": "Liberation is recorded for most of Denmark; Bornholm's distinct wartime and postwar experience remains attached to the event.",
+    "severity": "WARNING",
+    "standards": [
+      "GOV-000",
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1940-001",
+      "type": "OccupationAndLiberation",
+      "label": "The occupation that ended for most of Denmark in May 1945"
+    }
+  ],
+  "tags": [
+    "liberation",
+    "Bornholm",
+    "Second World War",
+    "postwar"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Befrielsesdagen og Bornholms anderledes forløb",
+      "category": "Politisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Kl. 20.35 den 4. maj 1945 meddelte BBC den tyske kapitulation, der omfattede Danmark, Nederlandene og det nordvestlige Tyskland; kapitulationen trådte i kraft næste morgen, den 5. maj. Det afsluttede besættelsen i det meste af Danmark. Bornholm blev ikke befriet samtidig: Sovjetiske styrker bombede øen i maj 1945, og sovjetiske tropper blev der indtil 1946.",
+      "publicSummary": "Landets status er ændret til befriet. Regionale undtagelser forbliver synlige, fordi beboerne ikke er en fodnote i versionsnoterne.",
+      "commitMessage": "fix(reporting): medtag regionale forhold i stedet for at sende et misvisende grønt flueben for hele landet",
+      "diagnosticMessage": "Befrielsen er registreret for det meste af Danmark; Bornholms særlige krigs- og efterkrigshistorie er fortsat knyttet til hændelsen.",
+      "relationLabels": {
+        "DK-1940-001": "Besættelsen, der sluttede i det meste af Danmark i maj 1945"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1945-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

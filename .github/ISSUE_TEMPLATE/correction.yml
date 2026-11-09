@@ -1,0 +1,25 @@
+name: Correct a historical record
+description: Report an inaccurate claim, unclear evidence, or broken citation.
+title: "[Correction]: "
+body:
+  - type: input
+    id: incident
+    attributes:
+      label: Incident ID
+      placeholder: DK-1849-001
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: Statement to review
+      description: Quote the exact claim or identify the broken source link.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting source and proposed correction
+      description: Link evidence and explain which passage supports the correction.
+    validations:
+      required: true

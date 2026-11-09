@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\World.GOV.Core\World.GOV.Core.csproj" />
+    <EmbeddedResource Include="..\..\countries\denmark\country.json"
+                      LogicalName="Denmark.NET.country.json" />
+    <EmbeddedResource Include="..\..\countries\denmark\incidents\*.json"
+                      LogicalName="Denmark.NET.Incidents.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

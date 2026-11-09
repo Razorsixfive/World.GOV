@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1953-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1953,
+    "month": 6,
+    "day": 5,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "5 June 1953"
+  },
+  "category": "Political",
+  "title": "The 1953 Constitutional Reform",
+  "historical": {
+    "summary": "The constitutional reform of 1953 abolished the Landsting, established negative parliamentarism in the constitution, expanded referendum provisions, and extended the constitution to Greenland.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-015"
+    ]
+  },
+  "satire": {
+    "publicSummary": "One parliamentary chamber has been retired. The remaining chamber will inherit all outstanding paperwork.",
+    "commitMessage": "refactor(parliament): remove redundant chamber after governance review",
+    "diagnosticId": "GOV1953",
+    "diagnosticMessage": "One legislative chamber has been decommissioned; approval routing remains distributed.",
+    "severity": "CRITICAL",
+    "standards": [
+      "GOV-000",
+      "GOV-014"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1915-001",
+      "type": "ConstitutionalContinuity",
+      "label": "The earlier constitutional reform"
+    }
+  ],
+  "tags": [
+    "constitution",
+    "parliament",
+    "Greenland",
+    "starter-tour"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Grundlovsændringen i 1953",
+      "category": "Politisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Grundlovsændringen i 1953 afskaffede Landstinget, indførte negativ parlamentarisme i grundloven, udvidede bestemmelserne om folkeafstemninger og udstrakte grundloven til Grønland.",
+      "publicSummary": "Det ene parlamentskammer er blevet pensioneret. Det tilbageværende kammer arver alt udestående papirarbejde.",
+      "commitMessage": "refactor(parliament): nedlæg et kammer efter en gennemgang af styringen",
+      "diagnosticMessage": "Et lovgivende kammer er nedlagt; godkendelsesvejene er fortsat fordelt.",
+      "relationLabels": {
+        "DK-1915-001": "Den tidligere grundlovsændring"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1953-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

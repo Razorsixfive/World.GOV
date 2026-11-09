@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World.GOV incident v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "countryIds", "date", "category", "title", "historical", "satire"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[A-Z]{2,3}-[0-9]{4}-[0-9]{3,}$" },
+    "countryIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z]{2,3}$" } },
+    "globalEventId": { "type": ["string", "null"], "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "regions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["Africa", "Antarctica", "Asia", "Europe", "North America", "Oceania", "South America"] }
+    },
+    "date": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startYear", "month", "day", "endYear", "precision", "calendar", "circa", "displayText"],
+      "properties": {
+        "startYear": { "type": ["integer", "null"], "minimum": -9999, "maximum": 9999, "not": { "const": 0 } },
+        "month": { "type": ["integer", "null"], "minimum": 1, "maximum": 12 },
+        "day": { "type": ["integer", "null"], "minimum": 1, "maximum": 31 },
+        "endYear": { "type": ["integer", "null"], "minimum": -9999, "maximum": 9999, "not": { "const": 0 } },
+        "precision": { "enum": ["day", "month", "year", "range", "approximate", "unknown"] },
+        "calendar": { "type": "string", "minLength": 1 },
+        "circa": { "type": "boolean" },
+        "displayText": { "type": "string", "minLength": 1 }
+      }
+    },
+    "category": { "enum": ["Political", "Economic", "NaturalDisaster", "War", "PublicAdministration", "Technology", "Infrastructure", "Social", "International", "Other"] },
+    "title": { "type": "string", "minLength": 1 },
+    "historical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "evidenceStatus", "sources"],
+      "properties": {
+        "summary": { "type": "string", "minLength": 1 },
+        "evidenceStatus": { "enum": ["Documented", "Interpretive", "Uncertain", "Disputed"] },
+        "uncertainty": { "type": ["string", "null"] },
+        "sources": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^SRC-[A-Z]{2,3}-[A-Za-z0-9-]+$" } }
+      }
+    },
+    "translations": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z]{2}-[A-Z]{2}$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "category": { "type": "string", "minLength": 1 },
+          "evidenceStatus": { "type": "string", "minLength": 1 },
+          "historicalSummary": { "type": "string", "minLength": 1 },
+          "historicalUncertainty": { "type": ["string", "null"] },
+          "publicSummary": { "type": "string", "minLength": 1 },
+          "commitMessage": { "type": "string", "minLength": 1 },
+          "diagnosticMessage": { "type": "string", "minLength": 1 },
+          "relationLabels": {
+            "type": "object",
+            "propertyNames": { "pattern": "^[A-Z]{2,3}-[0-9]{4}-[0-9]{3,}$" },
+            "additionalProperties": { "type": "string", "minLength": 1 }
+          }
+        },
+        "minProperties": 1
+      }
+    },
+    "satire": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commitMessage", "diagnosticId", "diagnosticMessage"],
+      "properties": {
+        "publicSummary": { "type": ["string", "null"] },
+        "codeExample": { "type": ["string", "null"] },
+        "commitMessage": { "type": "string", "minLength": 1 },
+        "diagnosticId": { "type": "string", "pattern": "^GOV[0-9]{3,4}$" },
+        "diagnosticMessage": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["CRITICAL", "WARNING", "INFO"] },
+        "standards": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^GOV-[A-Za-z0-9-]+$" } },
+        "acknowledged": { "type": "boolean" },
+        "ignoredByPolicy": { "type": "boolean" }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["incidentId", "type", "label"],
+        "properties": {
+          "incidentId": { "type": "string", "pattern": "^[A-Z]{2,3}-[0-9]{4}-[0-9]{3,}$" },
+          "type": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "tags": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "sourcePath": { "type": ["string", "null"] },
+    "introducedInGitCommit": { "type": ["string", "null"], "pattern": "^[a-fA-F0-9]{7,40}$" }
+  }
+}

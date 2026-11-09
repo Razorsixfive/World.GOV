@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1933-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1933,
+    "month": 1,
+    "day": 30,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "30 January 1933"
+  },
+  "category": "Political",
+  "title": "The Kanslergade Agreement and Its Disputed Legacy",
+  "historical": {
+    "summary": "During the night of 29–30 January 1933, Socialdemokratiet, Det Radikale Venstre, and Venstre reached the Kanslergade Agreement, a crisis package that included currency, labor, and social-policy measures. The agreement's historical meaning is disputed: some accounts present it as proof of parliamentary cooperation and democratic resilience, while other historians challenge a broad consensus narrative and emphasize political bargaining, exclusions, and contested assessments of its effects. The disagreement concerns the agreement's significance and legacy, not whether it occurred.",
+    "evidenceStatus": "Disputed",
+    "uncertainty": "The sources agree on the date, participating parties, and broad contents. They differ over how much the agreement demonstrates consensus and how its long-term social and economic effects should be judged; those effects are difficult to isolate from the wider crisis and other legislation.",
+    "sources": [
+      "SRC-DK-002",
+      "SRC-DK-003",
+      "SRC-DK-004"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The consensus metric is green. The minutes retain a less synchronized account of bargaining, exclusions, and competing interpretations.",
+    "codeExample": "// Fictional reporting: an agreement is not the same as unanimity.\nReportConsensus(participatingParties, excludedParties, dissentingAccounts);",
+    "commitMessage": "fix(history): mark the consensus summary as disputed",
+    "diagnosticId": "GOV1933",
+    "diagnosticMessage": "The agreement is documented; the consensus label and claims about its long-term effects remain contested.",
+    "severity": "WARNING",
+    "standards": [
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [],
+  "tags": [
+    "Kanslergade Agreement",
+    "economic crisis",
+    "political compromise",
+    "historical interpretation"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Kanslergadeforliget og dets omstridte eftermæle",
+      "category": "Politisk",
+      "evidenceStatus": "Omstridt",
+      "historicalSummary": "Natten mellem den 29. og 30. januar 1933 indgik Socialdemokratiet, Det Radikale Venstre og Venstre Kanslergadeforliget, en krisepakke med blandt andet valuta-, arbejdsmarkeds- og socialpolitiske tiltag. Forligets historiske betydning er omstridt: Nogle fremstillinger ser det som et bevis på parlamentarisk samarbejde og demokratisk modstandskraft, mens andre historikere udfordrer en bred konsensusfortælling og fremhæver politiske forhandlinger, udelukkede partier og uenighed om virkningerne. Uenigheden handler om forligets betydning og eftermæle, ikke om hvorvidt det blev indgået.",
+      "historicalUncertainty": "Kilderne er enige om datoen, de deltagende partier og hovedindholdet. De vurderer forskelligt, hvor meget forliget viser om konsensus, og hvordan dets langsigtede sociale og økonomiske virkninger skal bedømmes; virkningerne er vanskelige at adskille fra den bredere krise og anden lovgivning.",
+      "publicSummary": "Konsensusmåleren lyser grønt. Referatet rummer stadig en mindre synkroniseret beretning om forhandlinger, udelukkelser og konkurrerende fortolkninger.",
+      "commitMessage": "fix(history): markér konsensusresuméet som omstridt",
+      "diagnosticMessage": "Forliget er dokumenteret; konsensusmærkatet og påstande om dets langsigtede virkninger er fortsat omstridte."
+    }
+  },
+  "countryIds": [
+    "DK"
+  ]
+}

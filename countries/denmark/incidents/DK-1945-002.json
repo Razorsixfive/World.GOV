@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1945-002",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1945,
+    "month": 5,
+    "day": 5,
+    "endYear": 1970,
+    "precision": "range",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "5 May 1945–1970"
+  },
+  "category": "Social",
+  "title": "The Postwar Narrative of Occupation and Resistance",
+  "historical": {
+    "summary": "Historian Niels Wium Olesen argues that a dominant postwar account of Denmark's occupation took shape around liberation and in the following years. In his interpretation, the narrative emphasized national unity and resistance while pushing conflicts over the cooperation policy toward the margins. Olesen describes later shifts in public and historical writing, including increased attention to tensions between cooperation and resistance after about 1970.",
+    "evidenceStatus": "Interpretive",
+    "uncertainty": "This entry summarizes Olesen's interpretation of collective memory. Its account does not represent every group's experience or claim that the postwar narrative was universally accepted; other scholarship may describe its development and influence differently.",
+    "sources": [
+      "SRC-DK-017"
+    ]
+  },
+  "satire": {
+    "publicSummary": "One postwar narrative has been pinned as the default view. Competing memories remain in the archive; the interface has no consensus button.",
+    "codeExample": "// Fictional systems metaphor; collective memory is not a single-value field.\nNarratives = narratives.WithAttribution().WithLimits();",
+    "commitMessage": "feat(memory): promote one postwar narrative to the default history branch",
+    "diagnosticId": "GOV1946",
+    "diagnosticMessage": "The cited interpretation describes an influential postwar narrative; it does not make collective memory uniform.",
+    "severity": "INFO",
+    "standards": [
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1945-001",
+      "type": "MemoryAndHistoriography",
+      "label": "An interpretation of how the liberation and occupation were remembered"
+    }
+  ],
+  "tags": [
+    "postwar memory",
+    "occupation",
+    "resistance",
+    "historiography"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Efterkrigstidens fortælling om besættelse og modstand",
+      "category": "Samfund",
+      "evidenceStatus": "Fortolkende",
+      "historicalSummary": "Historikeren Niels Wium Olesen argumenterer for, at en dominerende efterkrigsfortælling om Danmarks besættelse tog form omkring befrielsen og i de følgende år. I hans fortolkning lagde fortællingen vægt på national enhed og modstand, mens konflikterne om samarbejdspolitikken blev skubbet i baggrunden. Olesen beskriver senere ændringer i offentligheden og historieskrivningen, herunder større opmærksomhed på spændingen mellem samarbejde og modstand efter omkring 1970.",
+      "historicalUncertainty": "Denne post sammenfatter Olesens fortolkning af kollektiv erindring. Den beskriver ikke alle gruppers erfaringer og hævder ikke, at efterkrigsfortællingen blev accepteret af alle; anden forskning kan beskrive dens udvikling og indflydelse anderledes.",
+      "publicSummary": "Én efterkrigsfortælling er fastgjort som standardvisning. Konkurrerende erindringer ligger stadig i arkivet; grænsefladen har ingen konsensusknap.",
+      "commitMessage": "feat(memory): promote one postwar narrative to the default history branch",
+      "diagnosticMessage": "Den citerede fortolkning beskriver en indflydelsesrig efterkrigsfortælling; den gør ikke den kollektive erindring ensartet."
+    }
+  },
+  "countryIds": [
+    "DK"
+  ]
+}

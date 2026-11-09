@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "DK",
+  "slug": "denmark",
+  "displayName": "Denmark",
+  "nativeName": "Danmark",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US", "da-DK"],
+  "historicalCoverage": { "startYear": 965, "endYear": 2000 },
+  "incidentFiles": [
+    "incidents/DK-0965-001.json",
+    "incidents/DK-1933-001.json",
+    "incidents/DK-1920-001.json",
+    "incidents/DK-1940-001.json",
+    "incidents/DK-1945-001.json",
+    "incidents/DK-1972-001.json",
+    "incidents/DK-2000-001.json",
+    "incidents/DK-1849-001.json",
+    "incidents/DK-1915-001.json",
+    "incidents/DK-1953-001.json",
+    "incidents/DK-1945-002.json",
+    "incidents/DK-1973-001.json"
+  ],
+  "standardFiles": ["standards/GOV-000.md", "standards/GOV-001.md", "standards/GOV-002.md", "standards/GOV-003.md", "standards/GOV-005.md", "standards/GOV-006.md", "standards/GOV-007.md", "standards/GOV-009.md", "standards/GOV-014.md", "standards/GOV-HIST-001.md"],
+  "extensionAssembly": "Denmark.NET"
+}

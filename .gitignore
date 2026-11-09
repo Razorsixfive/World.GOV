@@ -1,0 +1,17 @@
+# Build output
+**/bin/
+**/obj/
+
+# IDE and local settings
+.vs/
+.idea/
+*.user
+*.suo
+
+# Local tool state
+.dotnet/
+
+# Generated publication output
+/publish-data/
+/src/World.GOV.Web/wwwroot/data/
+/.artifacts/

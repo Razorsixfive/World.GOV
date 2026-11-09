@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1973-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1973,
+    "month": 1,
+    "day": 1,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "1 January 1973"
+  },
+  "category": "International",
+  "title": "Denmark Joins the European Communities",
+  "historical": {
+    "summary": "Denmark joined the European Communities on 1 January 1973, alongside Ireland and the United Kingdom. The Communities then grew from six to nine member countries.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-018",
+      "SRC-DK-019"
+    ]
+  },
+  "satire": {
+    "publicSummary": "International cooperation has been enabled. Please allow additional time for meetings about the meetings.",
+    "commitMessage": "feat(integration): add external policy dependencies with negotiated defaults",
+    "diagnosticId": "GOV1973",
+    "diagnosticMessage": "Cross-border interfaces are enabled; opt-out configuration remains available where agreed.",
+    "severity": "WARNING",
+    "standards": [
+      "GOV-000"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DE-1990-001",
+      "type": "EuropeanContext",
+      "label": "A later event in the European Communities timeline"
+    }
+  ],
+  "tags": [
+    "Europe",
+    "international",
+    "integration",
+    "starter-tour"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Danmark bliver medlem af De Europæiske Fællesskaber",
+      "category": "Internationalt",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Danmark blev medlem af De Europæiske Fællesskaber den 1. januar 1973 sammen med Irland og Storbritannien. Fællesskaberne voksede dermed fra seks til ni medlemslande.",
+      "publicSummary": "Det internationale samarbejde er aktiveret. Der må påregnes ekstra tid til møder om møderne.",
+      "commitMessage": "feat(integration): tilføj eksterne politiske afhængigheder med forhandlede standardvalg",
+      "diagnosticMessage": "Grænseflader på tværs af landegrænser er aktiveret; aftalte undtagelser kan fortsat konfigureres.",
+      "relationLabels": {
+        "DE-1990-001": "En senere begivenhed i De Europæiske Fællesskabers historie"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1973-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-0965-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 960,
+    "month": null,
+    "day": null,
+    "endYear": 985,
+    "precision": "approximate",
+    "calendar": "gregorian",
+    "circa": true,
+    "displayText": "c. 960–985"
+  },
+  "category": "Political",
+  "title": "The Jelling Stones and Their Uncertain Dating",
+  "historical": {
+    "summary": "The Jelling stones were raised by Gorm the Old and Harald Bluetooth during Denmark's transition from Viking-age pagan society to Christian kingship. Harald's larger stone claims that he won all Denmark and Norway and made the Danes Christian. The smaller stone is dated to about 950; the larger stone is harder to date and is generally placed between 960 and 985.",
+    "evidenceStatus": "Uncertain",
+    "uncertainty": "The timeline date 0965 is a sorting estimate, not an established exact year. The larger stone is generally dated to 960–985, and the inscription's wording about making Denmark whole also has more than one possible translation.",
+    "sources": [
+      "SRC-DK-001"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The database requires a year. Archaeology submits a range and asks the interface not to mistake sort order for certainty.",
+    "codeExample": "// A sorting date is not evidence of day-level precision.\nvar displayDate = evidence.ExactYear ?? evidence.ApproximateRange;",
+    "commitMessage": "docs(history): store the runestone dating range instead of claiming a precise release date",
+    "diagnosticId": "GOV965",
+    "diagnosticMessage": "The Jelling stones mark a major transition, but the evidence does not establish one exact year for the larger stone.",
+    "severity": "WARNING",
+    "standards": [
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [],
+  "tags": [
+    "Jelling stones",
+    "Viking Age",
+    "Harald Bluetooth",
+    "Christianization",
+    "dating"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Jellingstenene og den usikre datering",
+      "category": "Politisk",
+      "evidenceStatus": "Usikkert",
+      "historicalSummary": "Jellingstenene blev rejst af Gorm den Gamle og Harald Blåtand under Danmarks overgang fra vikingetidens hedenske samfund til kristent kongedømme. Haralds store sten hævder, at han vandt sig hele Danmark og Norge og gjorde danerne kristne. Den lille sten dateres til omkring 950; den store sten er vanskeligere at datere og placeres almindeligvis mellem 960 og 985.",
+      "historicalUncertainty": "Tidslinjens årstal 0965 er et sorteringsestimat, ikke et fastslået præcist år. Den store sten dateres almindeligvis til 960–985, og indskriftens formulering om at gøre Danmark helt har også mere end én mulig oversættelse.",
+      "publicSummary": "Databasen kræver et årstal. Arkæologien indsender et interval og beder grænsefladen om ikke at forveksle sorteringsrækkefølge med sikkerhed.",
+      "commitMessage": "docs(history): registrer runestenens dateringsinterval i stedet for at hævde en præcis udgivelsesdato",
+      "diagnosticMessage": "Jellingstenene markerer en stor overgang, men kilderne fastslår ikke ét præcist år for den store sten."
+    }
+  },
+  "countryIds": [
+    "DK"
+  ]
+}

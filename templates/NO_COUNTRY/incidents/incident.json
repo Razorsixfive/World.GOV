@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "XX-1900-001",
+  "countryIds": ["XX"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 1900,
+    "month": null,
+    "day": null,
+    "endYear": null,
+    "precision": "year",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "1900"
+  },
+  "category": "Other",
+  "title": "REPLACE: a specific historical event",
+  "historical": {
+    "summary": "REPLACE: an original, sourced account of what happened.",
+    "evidenceStatus": "Uncertain",
+    "uncertainty": "REPLACE: explain the precision of the date and any unresolved details.",
+    "sources": ["SRC-XX-001"]
+  },
+  "satire": {
+    "publicSummary": "REPLACE: a clearly fictional administrative memo.",
+    "commitMessage": "chore(governance): REPLACE with the fictional change",
+    "diagnosticId": "GOV1900",
+    "diagnosticMessage": "REPLACE: a fictional domain diagnostic.",
+    "severity": "WARNING",
+    "standards": [],
+    "acknowledged": false,
+    "ignoredByPolicy": true
+  },
+  "relations": [],
+  "tags": []
+}

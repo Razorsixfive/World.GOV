@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "SRC-DK-001",
+      "title": "Jellingstenene, ca. 950-965 — Danmarkshistorien",
+      "publisher": "Aarhus University",
+      "url": "https://danmarkshistorien.lex.dk/Jellingstenene,_ca._950-965",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-002",
+      "title": "Myterne om Kanslergadeforliget — Danmarkshistorien",
+      "publisher": "Aarhus University",
+      "url": "https://danmarkshistorien.lex.dk/Myterne_om_Kanslergadeforliget",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-003",
+      "title": "Kanslergadeforliget 1933 — Danmarkshistorien",
+      "publisher": "Aarhus University",
+      "url": "https://danmarkshistorien.lex.dk/Kanslergadeforliget_1933",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-004",
+      "title": "Kanslergadeforliget - Folketingsdebatten 30. januar 1933 — Danmarkshistorien",
+      "publisher": "Aarhus University",
+      "url": "https://danmarkshistorien.lex.dk/Kanslergadeforliget_-_Folketingsdebatten_30._januar_1933",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-005",
+      "title": "Reunification timeline — The Royal Danish Library",
+      "publisher": "The Royal Danish Library",
+      "url": "https://www.kb.dk/en/inspiration/reunification/timeline",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-006",
+      "title": "Genforeningen 1920 — Danmarkshistorien, Aarhus University",
+      "publisher": "Aarhus University",
+      "url": "https://danmarkshistorien.lex.dk/Genforeningen_1920",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-007",
+      "title": "The German Occupation 1940–1945 — National Museum of Denmark",
+      "publisher": "National Museum of Denmark",
+      "url": "https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-008",
+      "title": "Besættelsen den 9. april 1940 — Danmarkshistorien, Aarhus University",
+      "publisher": "Aarhus University",
+      "url": "https://danmarkshistorien.lex.dk/Bes%C3%A6ttelsen_den_9._april_1940",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-009",
+      "title": "Befrielsen — National Museum of Denmark",
+      "publisher": "National Museum of Denmark",
+      "url": "https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/",
+      "publishedDate": null,
+      "accessedDate": null,
+      "language": "da-DK",
+      "notes": "Direct fetch returned HTTP 503 on 2026-11-09; the National Museum's accessible English occupation page (SRC-DK-007) corroborates the liberation date and Bornholm exception."
+    },
+    {
+      "id": "SRC-DK-010",
+      "title": "Bombet og besat på Bornholm — National Museum of Denmark",
+      "publisher": "National Museum of Denmark",
+      "url": "https://natmus.dk/vorestid/bombet-og-besat-paa-bornholm/",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-011",
+      "title": "Det danske EU-medlemskab — Lex, The Danish National Encyclopedia",
+      "publisher": "Lex / Danish National Encyclopedia",
+      "url": "https://lex.dk/det_danske_EU-medlemskab",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-012",
+      "title": "EU referenda — The Danish Parliament",
+      "publisher": "The Danish Parliament",
+      "url": "https://www.thedanishparliament.dk/en/eu-information-centre/eu-referenda",
+      "publishedDate": null,
+      "accessedDate": null,
+      "language": "en-US",
+      "notes": "Direct fetch returned HTTP 403 on 2026-11-09; referendum results were cross-checked against Statistics Denmark's official yearbook (SRC-DK-020)."
+    },
+    {
+      "id": "SRC-DK-013",
+      "title": "Denmark outside the euro — also 20 years later — Folketinget EU Information Centre",
+      "publisher": "The Danish Parliament",
+      "url": "https://www.eu.dk/aktuelt/nyheder/2020/sep/danmark-udenfor-euroen---ogsaa-20-aar-senere",
+      "publishedDate": null,
+      "accessedDate": null,
+      "language": "da-DK",
+      "notes": "Direct fetch returned HTTP 403 on 2026-11-09; referendum results were cross-checked against Statistics Denmark's official yearbook (SRC-DK-020) and the Nationalbank report (SRC-DK-014)."
+    },
+    {
+      "id": "SRC-DK-014",
+      "title": "Annual Report 2000 — Danmarks Nationalbank",
+      "publisher": "Danmarks Nationalbank",
+      "url": "https://www.nationalbanken.dk/media/p2tagd4m/beret00-uk.pdf",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-015",
+      "title": "Grundlovens og folkestyrets udvikling — Folketinget",
+      "publisher": "Folketinget",
+      "url": "https://www.ft.dk/da/folkestyret/grundloven-og-folkestyret/grundlovens-og-folkestyrets-udvikling",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-016",
+      "title": "Kvinder i Folketinget — Folketinget",
+      "publisher": "Folketinget",
+      "url": "https://www.ft.dk/folkestyret/grundloven-og-folkestyret/kvinder-i-politik",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-017",
+      "title": "Besættelsestiden i eftertidens lys — Lex",
+      "publisher": "Aarhus University",
+      "url": "https://lex.dk/Bes%C3%A6ttelsestiden_i_eftertidens_lys",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "da-DK",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-018",
+      "title": "History of the European Union: 1970–79 — European Union",
+      "publisher": "European Union",
+      "url": "https://european-union.europa.eu/principles-countries-history/history-eu/1970-79_en",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-019",
+      "title": "Denmark — EU country",
+      "publisher": "European Union",
+      "url": "https://european-union.europa.eu/principles-countries-history/eu-countries/denmark_en",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": null
+    },
+    {
+      "id": "SRC-DK-020",
+      "title": "Denmark in Figures 2001 — Entire publication",
+      "publisher": "Statistics Denmark",
+      "url": "https://www.dst.dk/Site/Dst/Udgivelser/GetPubFile.aspx?id=3151&sid=entire_publication",
+      "publishedDate": null,
+      "accessedDate": "2026-11-09",
+      "language": "en-US",
+      "notes": "Official statistical yearbook; the EU referendum table reports turnout and percentages of valid votes."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1940-001",
+  "globalEventId": "nazi-germany-occupation-of-denmark-1940-1945",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 1940,
+    "month": 4,
+    "day": 9,
+    "endYear": 1945,
+    "precision": "range",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "9 April 1940–5 May 1945"
+  },
+  "category": "War",
+  "title": "German Occupation of Denmark",
+  "historical": {
+    "summary": "Nazi Germany invaded Denmark on 9 April 1940. After several hours of fighting, the Danish government ordered the armed forces to cease resistance. Danish institutions continued to operate under German occupation and severe constraints; their continued operation did not mean Denmark was sovereign or free. The occupation of most of Denmark ended in May 1945, while Bornholm's experience differed.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-007",
+      "SRC-DK-008"
+    ]
+  },
+  "satire": {
+    "publicSummary": "Administrative services remain online. This status message is not a sovereignty certificate, and the dashboard cannot overrule the occupying power.",
+    "codeExample": "// Fictional dashboard logic: operational continuity is not political freedom.\nif (institutions.Operational)\n    ReportServiceStatus();\nReportSovereigntySeparately();",
+    "commitMessage": "fix(status): stop treating service availability as proof of sovereignty",
+    "diagnosticId": "GOV1940",
+    "diagnosticMessage": "Continuity procedures remain active under occupation; authority and freedom are materially constrained.",
+    "severity": "CRITICAL",
+    "standards": [
+      "GOV-000",
+      "GOV-002",
+      "GOV-014",
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1945-001",
+      "type": "OccupationAndLiberation",
+      "label": "The liberation announcement and the distinct situation on Bornholm"
+    },
+    {
+      "incidentId": "DE-1940-001",
+      "type": "SharedHistoricalEventPerspective",
+      "label": "The invasion and occupation from the Nazi German regime's perspective"
+    }
+  ],
+  "tags": [
+    "occupation",
+    "Second World War",
+    "resistance",
+    "sovereignty"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Den tyske besættelse af Danmark",
+      "category": "Krig",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Nazityskland invaderede Danmark den 9. april 1940. Efter flere timers kampe beordrede den danske regering de væbnede styrker til at indstille modstanden. Danske institutioner fortsatte med at fungere under den tyske besættelse og under betydelige begrænsninger; deres fortsatte drift betød ikke, at Danmark var suverænt eller frit. Besættelsen af det meste af Danmark sluttede i maj 1945, mens Bornholms forløb var anderledes.",
+      "publicSummary": "De administrative tjenester er fortsat online. Denne statusmeddelelse er ikke et suverænitetsbevis, og kontrolpanelet kan ikke tilsidesætte besættelsesmagten.",
+      "commitMessage": "fix(status): stop med at forveksle tjenestetilgængelighed med suverænitet",
+      "diagnosticMessage": "Kontinuitetsprocedurerne er fortsat aktive under besættelsen; myndighed og frihed er væsentligt begrænsede.",
+      "relationLabels": {
+        "DK-1945-001": "Befrielsesmeddelelsen og Bornholms særlige situation"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-1940-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

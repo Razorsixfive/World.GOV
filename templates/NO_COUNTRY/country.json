@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "XX",
+  "slug": "new-country",
+  "displayName": "Replace with country name",
+  "nativeName": "Replace with native name",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US"],
+  "historicalCoverage": { "startYear": null, "endYear": null },
+  "incidentFiles": ["incidents/incident.json"],
+  "standardFiles": [],
+  "extensionAssembly": null
+}

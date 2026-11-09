@@ -1,0 +1,116 @@
+@inherits LayoutComponentBase
+@inject PortalDataService Data
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+<a class="skip-link" href="@($"{Navigation.Uri.Split('#')[0]}#main-content")">Skip to content</a>
+
+<header class="site-header">
+    <a class="brand" href="" aria-label="World.GOV overview">
+        <span class="brand-seal" aria-hidden="true">WG</span>
+        <span class="brand-copy"><strong>WORLD.GOV</strong><small>PUBLIC SERVICE STATUS</small></span>
+    </a>
+    <nav class="primary-nav" aria-label="Main navigation">
+        <NavLink href="" Match="NavLinkMatch.All">Overview</NavLink>
+        <NavLink href="incidents">Incidents</NavLink>
+        <NavLink href="history">History</NavLink>
+        <NavLink href="countries">Countries</NavLink>
+        <NavLink href="standards">Standards</NavLink>
+        <NavLink href="build">Build console</NavLink>
+        <NavLink href="about">About</NavLink>
+    </nav>
+    <div class="header-tools">
+        <div class="header-language" title="@LanguageTitle">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg>
+            <label class="visually-hidden" for="site-language">Choose site language</label>
+            <select id="site-language" value="@SelectedLocale" @onchange="OnLanguageChanged" aria-label="Choose site language">
+                @foreach (var locale in LanguageOptions)
+                {
+                    <option value="@locale">@LanguageLabel(locale)</option>
+                }
+            </select>
+        </div>
+        <span class="header-chip"><span class="status-dot"></span> OPEN DATA PORTAL</span>
+    </div>
+</header>
+
+<main class="site-main" id="main-content" tabindex="-1">
+    @if (Data.LoadError is not null)
+    {
+        <aside class="notice notice-warning" role="alert"><strong>The record could not be loaded.</strong><span>@Data.LoadError</span><a href="">Reload portal</a></aside>
+    }
+    <CascadingValue Value="@SelectedLocale">
+        @Body
+    </CascadingValue>
+</main>
+
+<footer class="site-footer">
+    <span>World.GOV · Denmark.NET reference module</span>
+    <span>Independent historical satire · <a href="about">About &amp; corrections</a> · v0.4.0</span>
+</footer>
+
+@code {
+    private const string EnglishLocale = "en-US";
+    private const string LanguageStorageKey = "worldgov.selected-language";
+    private string SelectedLocale { get; set; } = EnglishLocale;
+    private IReadOnlyList<string> LanguageOptions => Data.Countries
+        .SelectMany(country => country.SupportedLocales)
+        .Concat(Data.Sources.Select(source => source.Language)
+            .Where(locale => !string.IsNullOrWhiteSpace(locale))
+            .Select(locale => locale!))
+        .Append(EnglishLocale)
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .OrderBy(locale => string.Equals(locale, EnglishLocale, StringComparison.OrdinalIgnoreCase) ? 0 : 1)
+        .ThenBy(locale => locale, StringComparer.OrdinalIgnoreCase)
+        .ToArray();
+    private string LanguageTitle => string.Equals(SelectedLocale, EnglishLocale, StringComparison.OrdinalIgnoreCase)
+        ? "English (EN) is the default display language."
+        : $"{LanguageName(SelectedLocale)} is selected. Translated incident content is shown when available; otherwise, the page falls back to English (EN).";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Data.EnsureLoadedAsync();
+        try
+        {
+            var savedLocale = await JS.InvokeAsync<string?>("localStorage.getItem", LanguageStorageKey);
+            if (savedLocale is not null && LanguageOptions.Contains(savedLocale, StringComparer.OrdinalIgnoreCase))
+                SelectedLocale = savedLocale;
+        }
+        catch (JSException)
+        {
+            // The portal still works with the default language when browser storage is unavailable.
+        }
+    }
+
+    private async Task OnLanguageChanged(ChangeEventArgs args)
+    {
+        var locale = args.Value?.ToString();
+        if (string.IsNullOrWhiteSpace(locale) || !LanguageOptions.Contains(locale, StringComparer.OrdinalIgnoreCase)) return;
+
+        SelectedLocale = locale;
+        try
+        {
+            await JS.InvokeVoidAsync("localStorage.setItem", LanguageStorageKey, SelectedLocale);
+        }
+        catch (JSException)
+        {
+            // Keep the current selection for this session if browser storage is unavailable.
+        }
+    }
+
+    private static string LanguageLabel(string locale) => locale.ToLowerInvariant() switch
+    {
+        "en" or "en-us" => "English (EN)",
+        "da" or "da-dk" => "Dansk (DA)",
+        "de" or "de-de" => "Deutsch (DE)",
+        _ => locale.ToUpperInvariant()
+    };
+
+    private static string LanguageName(string locale) => locale.ToLowerInvariant() switch
+    {
+        "en" or "en-us" => "English",
+        "da" or "da-dk" => "Danish",
+        "de" or "de-de" => "German",
+        _ => locale
+    };
+}

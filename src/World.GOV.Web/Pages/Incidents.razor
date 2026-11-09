@@ -1,0 +1,76 @@
+@page "/incidents"
+@inject PortalDataService Data
+
+<PageTitle>Incidents · World.GOV</PageTitle>
+
+<section class="page-intro">
+    <p class="eyebrow">HISTORICAL REGISTER</p>
+    <h1>Incident explorer</h1>
+    <p>Search documented events and filter by country, period, category, and evidence status.</p>
+</section>
+
+<section class="panel filter-panel" aria-label="Incident filters">
+    <label class="filter-field filter-search"><span>Search</span><input @bind="Search" @bind:event="oninput" @bind:after="ResetPage" placeholder="Title, fact, or incident ID" /></label>
+    <label class="filter-field"><span>Country</span><select @bind="CountryFilter" @bind:after="ResetPage"><option value="">All countries</option>@foreach (var country in Data.Countries){<option value="@country.Id">@country.DisplayName</option>}</select></label>
+    <label class="filter-field"><span>Category</span><select @bind="CategoryFilter" @bind:after="ResetPage"><option value="">All categories</option>@foreach (var category in Categories){<option value="@category">@IncidentLocalization.CategoryLabel(category, SelectedLocale)</option>}</select></label>
+    <label class="filter-field"><span>Evidence</span><select @bind="EvidenceFilter" @bind:after="ResetPage"><option value="">All evidence levels</option>@foreach (var evidence in EvidenceStatuses){<option value="@evidence">@IncidentLocalization.EvidenceStatusLabel(evidence, SelectedLocale)</option>}</select></label>
+    <label class="filter-field filter-year"><span>Year</span><input @bind="YearFilter" @bind:event="oninput" @bind:after="ResetPage" inputmode="numeric" placeholder="e.g. 1953" /></label>
+</section>
+
+<div class="list-toolbar"><span>@FilteredIncidents.Count() matching incidents</span><span class="muted">Page @CurrentPage of @TotalPages</span></div>
+
+<section class="panel incident-table-wrap">
+    <div class="incident-table incident-table-head" aria-hidden="true"><span>DATE</span><span>INCIDENT</span><span>COUNTRY / TYPE</span><span>EVIDENCE</span></div>
+    @foreach (var incident in PagedIncidents)
+    {
+        <a class="incident-table incident-table-row" href="@($"incident/{incident.Id}")">
+            <span class="incident-date">@incident.Date</span>
+            <span class="incident-title">@IncidentLocalization.Title(incident, SelectedLocale)<small>@incident.Id</small></span>
+            <span>@incident.Country · @IncidentLocalization.Category(incident, SelectedLocale)</span>
+            <span><span class="evidence-pill">@IncidentLocalization.EvidenceStatus(incident, SelectedLocale)</span></span>
+        </a>
+    }
+    @if (!PagedIncidents.Any())
+    {
+        <p class="empty-state">No records match these filters. Widen the search to continue the review.</p>
+    }
+</section>
+
+<nav class="pagination" aria-label="Incident pages">
+    <button class="button-secondary" @onclick="PreviousPage" disabled="@(CurrentPage <= 1)">Previous</button>
+    <span>Page @CurrentPage / @TotalPages</span>
+    <button class="button-secondary" @onclick="NextPage" disabled="@(CurrentPage >= TotalPages)">Next</button>
+</nav>
+
+@code {
+    [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
+    private const int PageSize = 8;
+    private string Search { get; set; } = string.Empty;
+    private string CountryFilter { get; set; } = string.Empty;
+    private string CategoryFilter { get; set; } = string.Empty;
+    private string EvidenceFilter { get; set; } = string.Empty;
+    private string YearFilter { get; set; } = string.Empty;
+    private int CurrentPage { get; set; } = 1;
+
+    private IEnumerable<string> Categories => Data.Incidents.Select(item => item.Category).Distinct().OrderBy(item => item, StringComparer.Ordinal);
+    private static readonly string[] EvidenceStatuses = ["Documented", "Interpretive", "Uncertain", "Disputed"];
+    private IEnumerable<GovernmentIncident> FilteredIncidents => Data.Incidents
+        .Where(item => string.IsNullOrWhiteSpace(Search) || item.Id.Contains(Search, StringComparison.OrdinalIgnoreCase) ||
+            item.Title.Contains(Search, StringComparison.OrdinalIgnoreCase) || item.Historical.Summary.Contains(Search, StringComparison.OrdinalIgnoreCase) ||
+            IncidentLocalization.Title(item, SelectedLocale).Contains(Search, StringComparison.OrdinalIgnoreCase) || IncidentLocalization.Summary(item, SelectedLocale).Contains(Search, StringComparison.OrdinalIgnoreCase))
+        .Where(item => string.IsNullOrWhiteSpace(CountryFilter) || item.Country == CountryFilter)
+        .Where(item => string.IsNullOrWhiteSpace(CategoryFilter) || item.Category == CategoryFilter)
+        .Where(item => string.IsNullOrWhiteSpace(EvidenceFilter) || item.Historical.EvidenceStatus == EvidenceFilter)
+        .Where(item => string.IsNullOrWhiteSpace(YearFilter) || MatchesYear(item, YearFilter));
+
+    private static bool MatchesYear(GovernmentIncident incident, string yearText) =>
+        int.TryParse(yearText, out var year) && incident.Date.StartYear is int start &&
+        year >= start && year <= (incident.Date.EndYear ?? start);
+    private int TotalPages => Math.Max(1, (int)Math.Ceiling(FilteredIncidents.Count() / (double)PageSize));
+    private IEnumerable<GovernmentIncident> PagedIncidents => FilteredIncidents.Skip((CurrentPage - 1) * PageSize).Take(PageSize);
+
+    protected override async Task OnInitializedAsync() => await Data.EnsureLoadedAsync();
+    private void ResetPage() => CurrentPage = 1;
+    private void PreviousPage() => CurrentPage = Math.Max(1, CurrentPage - 1);
+    private void NextPage() => CurrentPage = Math.Min(TotalPages, CurrentPage + 1);
+}

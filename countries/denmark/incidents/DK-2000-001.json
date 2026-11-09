@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-2000-001",
+  "regions": [
+    "Europe"
+  ],
+  "date": {
+    "startYear": 2000,
+    "month": 9,
+    "day": 28,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "28 September 2000"
+  },
+  "category": "Economic",
+  "title": "Denmark Votes to Keep the Krone",
+  "historical": {
+    "summary": "In the 28 September 2000 referendum on adopting the euro, 53.2% voted no and 46.8% voted yes; turnout was 87.6%. Denmark retained the krone and its euro opt-out. The Nationalbank reported that the fixed exchange-rate policy continued after the vote.",
+    "evidenceStatus": "Documented",
+    "sources": [
+      "SRC-DK-013",
+      "SRC-DK-014",
+      "SRC-DK-020"
+    ]
+  },
+  "satire": {
+    "publicSummary": "The electorate has declined the proposed currency migration. The krone remains in production; please do not reopen this decision without another referendum.",
+    "codeExample": "// Fictional configuration logic; the vote was real.\nif (referendum.Approved)\n    ScheduleCurrencyMigration();\nelse\n    RetainCurrency(\"DKK\");",
+    "commitMessage": "fix(currency): preserve current unit after migration proposal is declined",
+    "diagnosticId": "GOV2000",
+    "diagnosticMessage": "Euro adoption was rejected by referendum; the krone and fixed exchange-rate policy continue under Denmark's opt-out.",
+    "severity": "INFO",
+    "standards": [
+      "GOV-000",
+      "GOV-002",
+      "GOV-HIST-001"
+    ],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DK-1972-001",
+      "type": "ReferendumContext",
+      "label": "An earlier referendum on European integration"
+    }
+  ],
+  "tags": [
+    "referendum",
+    "currency",
+    "euro",
+    "krone",
+    "European Union"
+  ],
+  "translations": {
+    "da-DK": {
+      "title": "Danmark stemmer for at beholde kronen",
+      "category": "Økonomisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Ved folkeafstemningen den 28. september 2000 om indførelse af euroen stemte 53,2 procent nej og 46,8 procent ja; valgdeltagelsen var 87,6 procent. Danmark beholdt kronen og sit euroforbehold. Nationalbanken oplyste, at fastkurspolitikken fortsatte efter afstemningen.",
+      "publicSummary": "Vælgerne har afvist den foreslåede valutaovergang. Kronen forbliver i drift; genåbn venligst ikke beslutningen uden en ny folkeafstemning.",
+      "commitMessage": "fix(currency): behold den nuværende valuta efter at forslaget om ændring blev afvist",
+      "diagnosticMessage": "Vælgerne afviste indførelsen af euroen; kronen og fastkurspolitikken fortsætter under Danmarks forbehold.",
+      "relationLabels": {
+        "DK-1972-001": "En tidligere folkeafstemning om europæisk integration"
+      }
+    }
+  },
+  "sourcePath": "countries/denmark/incidents/DK-2000-001.json",
+  "countryIds": [
+    "DK"
+  ]
+}

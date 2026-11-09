@@ -1,0 +1,36 @@
+@page "/about"
+@inject PortalDataService Data
+
+<PageTitle>About · World.GOV</PageTitle>
+
+<section class="page-intro"><p class="eyebrow">ABOUT THE PROJECT</p><h1>Clean code. Broken politics.</h1><p>World.GOV is a historical discovery experience, a programming joke, and an open-source engineering project.</p></section>
+
+<div class="content-grid about-grid">
+    <section class="panel"><p class="eyebrow">PURPOSE</p><h2>History remains the source of truth.</h2><p>Every incident keeps its factual account, evidence status, and citations separate from its fictional commit messages and GOV diagnostics. A joke is never used as evidence.</p><p>The project uses a data-first country contract. Denmark is the reference module; other countries can contribute independent records through the same manifest format.</p></section>
+    <section class="panel"><p class="eyebrow">CONTRIBUTING</p><h2>Small, sourced changes are welcome.</h2><ul class="plain-list"><li>Support factual claims with credible sources.</li><li>Keep interpretation and fictional satire clearly labeled.</li><li>Do not invent quotations or make unsourced personal accusations.</li><li>Run the validator and build before submitting.</li></ul>@if (Data.Manifest?.RepositoryUrl is string repositoryUrl){<a class="text-link" href="@repositoryUrl" target="_blank" rel="noopener noreferrer">Open the project repository <span aria-hidden="true">↗</span></a>}else{<p class="muted">Repository link is published with the GitHub Pages build.</p>}</section>
+</div>
+
+<section class="notice notice-info about-notice"><strong>Engineering rule</strong><span>Actual compiler failures fail the build. GOV-domain satire remains a separate report and cannot turn a failing build green.</span></section>
+
+<div class="content-grid about-grid">
+    <section class="panel" id="evidence"><p class="eyebrow">HOW TO READ THE RECORD</p><h2>Evidence, explained</h2><dl class="evidence-definitions">
+        <dt>Documented</dt><dd>The cited material directly supports the account. This does not mean every interpretation is settled.</dd>
+        <dt>Interpretive</dt><dd>A stated explanation or connection is attributed to an author. Read the accompanying note for its limits.</dd>
+        <dt>Uncertain</dt><dd>The date, attribution, or another material detail cannot be established precisely. The note says what is unknown.</dd>
+        <dt>Disputed</dt><dd>Credible accounts disagree. The note describes the disagreement and identifies the sources.</dd>
+    </dl><p>These are descriptions of evidence, not numerical confidence scores. Memo text, GOV diagnostics, and simulation commits are fictional.</p></section>
+    <section class="panel" id="corrections"><p class="eyebrow">CORRECTIONS &amp; CONTRIBUTIONS</p><h2>The record can be corrected.</h2><p>Report the incident ID, the exact statement, and a source supporting your proposed correction. A maintainer reviews the evidence and records factual changes in the changelog. Historical dates stay unchanged when the record is edited.</p>
+    @if (Data.Manifest?.RepositoryUrl is string correctionRepo)
+    {
+        <a class="button-primary" href="@($"{correctionRepo}/issues/new?template=correction.yml")" target="_blank" rel="noopener noreferrer">Report a correction ↗</a>
+    }
+    else
+    {
+        <p>This local preview has no connected issue tracker. Add a proposed correction to the repository with the incident ID and supporting source; the published site links to GitHub issues.</p>
+    }
+    <p>Original project code and writing use the MIT license. Linked archives and publications retain their own terms. No account or tracking analytics are used by this portal.</p></section>
+</div>
+
+@code {
+    protected override Task OnInitializedAsync() => Data.EnsureLoadedAsync();
+}
