@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1963-001",
+  "countryIds": ["DK"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 1963, "month": null, "day": null, "endYear": 1969,
+    "precision": "range", "calendar": "gregorian", "circa": false,
+    "displayText": "1963–1968/69"
+  },
+  "category": "Infrastructure",
+  "title": "REGAN Vest: Government Continuity Goes Underground",
+  "historical": {
+    "summary": "REGAN Vest was built secretly in Rold Skov during the Cold War to shelter the Danish government, officials, and monarch in the event of nuclear war. Nordjyske Museer dates construction to 1963–1968; Slots- og Kulturstyrelsen gives 1963–1969. The bunker later became a Cold War museum, opening to visitors on 13 February 2023.",
+    "evidenceStatus": "Disputed",
+    "uncertainty": "The cited institutions differ on the construction end year. This record preserves both dates and uses 1969 as the outer end of the sorting range. The disagreement concerns that year, not the bunker's existence or purpose.",
+    "sources": ["SRC-DK-023", "SRC-DK-024", "SRC-DK-025"]
+  },
+  "satire": {
+    "publicSummary": "The administration continues to redact the location of a bunker that now offers museum tours. The booking page has been asked to respect the memo's formatting.",
+    "codeExample": "Archive.Redact(\"location\");\nMuseum.BookingPage.Publish(\"location\");\n\nif (Museum.IsOpenToVisitors)\n{\n    Archive.KeepRedaction(\n        reason: \"historical atmosphere\");\n}",
+    "archive": {
+      "id": "SIM-ARCHIVE-DK-1963-001",
+      "title": "Continuity file: the address is still classified as formatting",
+      "classifiedMessage": "Location must remain unknown.",
+      "declassifiedMessage": "Visitors require directions.",
+      "reclassifiedMessage": "Secrecy restored. Museum remains open.",
+      "lines": [
+        {"label": "Subject", "text": "Keep the administration available, even when its office is unavailable.", "redacted": false},
+        {"label": "Relocation site", "text": "REGAN Vest, Rold Skov. See also: the museum's visitor information.", "redacted": true},
+        {"label": "Continuity requirement", "text": "Relocate the agenda with the government. Unfinished business must survive the relocation.", "redacted": false},
+        {"label": "Disclosure channel", "text": "Guided museum tours. The booking page has disclosed the location more efficiently than this memo.", "redacted": true},
+        {"label": "Reason for remaining redactions", "text": "Removing the black bars would damage the document's historical atmosphere.", "redacted": true},
+        {"label": "Administrative conclusion", "text": "The secret has become public. The secrecy template remains in service.", "redacted": false}
+      ]
+    },
+    "commitMessage": "feat(continuity): preserve redactions after the secret becomes a museum",
+    "diagnosticId": "GOV1963",
+    "diagnosticMessage": "Location is public; redaction retained as a presentation dependency.",
+    "severity": "WARNING",
+    "standards": ["GOV-007", "GOV-HIST-001"],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "translations": {
+    "da-DK": {
+      "title": "REGAN Vest: Regeringens fortsatte drift flytter under jorden",
+      "historicalSummary": "REGAN Vest blev opført i hemmelighed i Rold Skov under Den Kolde Krig for at kunne huse den danske regering, embedsmænd og regenten i tilfælde af atomkrig. Nordjyske Museer daterer byggeriet til 1963–1968, mens Slots- og Kulturstyrelsen angiver 1963–1969. Bunkeren blev senere et koldkrigsmuseum, der åbnede for besøgende den 13. februar 2023.",
+      "historicalUncertainty": "De citerede institutioner angiver forskellige slutår for byggeriet. Denne registrering bevarer begge dateringer og bruger 1969 som sorteringsintervallets yderste slutår. Uenigheden gælder årstallet, ikke bunkerens eksistens eller formål.",
+      "publicSummary": "Administrationen overstreger fortsat placeringen af en bunker, der nu tilbyder museumsrundvisninger. Bookingsiden er blevet bedt om at respektere notatets formatering.",
+      "archive": {
+        "id": "SIM-ARCHIVE-DK-1963-001",
+        "title": "Beredskabsmappe: Adressen er stadig klassificeret som formatering",
+        "classifiedMessage": "Placeringen skal forblive ukendt.",
+        "declassifiedMessage": "Besøgende har brug for en vejvisning.",
+        "reclassifiedMessage": "Hemmeligholdelsen er genoprettet. Museet er stadig åbent.",
+        "lines": [
+          {"label": "Emne", "text": "Hold administrationen tilgængelig, selv når kontoret er utilgængeligt.", "redacted": false},
+          {"label": "Udflytningssted", "text": "REGAN Vest, Rold Skov. Se også museets besøgsinformation.", "redacted": true},
+          {"label": "Krav til fortsat drift", "text": "Flyt dagsordenen med regeringen. Uafsluttede sager skal overleve udflytningen.", "redacted": false},
+          {"label": "Offentliggørelseskanal", "text": "Guidede museumsrundvisninger. Bookingsiden har afsløret placeringen mere effektivt end dette notat.", "redacted": true},
+          {"label": "Begrundelse for resterende overstregninger", "text": "Fjernelse af de sorte bjælker ville skade dokumentets historiske stemning.", "redacted": true},
+          {"label": "Administrativ konklusion", "text": "Hemmeligheden er blevet offentlig. Skabelonen til hemmeligholdelse er stadig i drift.", "redacted": false}
+        ]
+      },
+      "relationLabels": {"DK-1949-001": "Danmarks tidligere tilslutning til NATO som medstifter"}
+    }
+  },
+  "relations": [
+    {"incidentId": "DK-1949-001", "type": "ColdWarContext", "label": "Denmark's earlier participation as a founding NATO member"}
+  ],
+  "tags": ["Cold War", "REGAN Vest", "civil defence", "archive", "redaction"],
+  "sourcePath": "countries/denmark/incidents/DK-1963-001.json"
+}

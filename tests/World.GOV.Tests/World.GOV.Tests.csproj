@@ -13,5 +13,6 @@
     <ProjectReference Include="../../src/World.GOV.Tooling/World.GOV.Tooling.csproj" />
     <ProjectReference Include="../../src/World.GOV.Cli/World.GOV.Cli.csproj" />
     <ProjectReference Include="../../src/Denmark.NET/Denmark.NET.csproj" />
+    <ProjectReference Include="../../src/World.GOV.Web/World.GOV.Web.csproj" />
   </ItemGroup>
 </Project>

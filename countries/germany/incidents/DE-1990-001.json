@@ -45,6 +45,18 @@
     "reunification",
     "political"
   ],
+  "translations": {
+    "da-DK": {
+      "title": "Tysklands genforening",
+      "category": "Politisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Den 3. oktober 1990 blev Den Tyske Demokratiske Republik en del af Forbundsrepublikken Tyskland gennem den tiltrædelsesproces, der var aftalt i 1990. Dermed trådte den tyske genforening i kraft.",
+      "publicSummary": "Den administrative sammenlægning er gennemført. At samordne journalsystemerne er blevet overdraget til en arbejdsgruppe.",
+      "relationLabels": {
+        "DK-1973-001": "En tidligere begivenhed på tidslinjen for De Europæiske Fællesskaber"
+      }
+    }
+  },
   "sourcePath": "countries/germany/incidents/DE-1990-001.json",
   "countryIds": [
     "DE"

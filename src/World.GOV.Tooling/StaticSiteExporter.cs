@@ -47,10 +47,11 @@ public static class StaticSiteExporter
             1,
             generatedAt,
             countries.Select(country => country.Id).ToArray(),
-            ["countries.json", "incidents", "timelines", "diagnostics", "standards", "sources/index.json", "build-report.json"],
+            ["countries.json", "incidents", "timelines", "diagnostics", "standards", "sources/index.json", "build-report.json", "locales/index.json"],
             GetRepositoryUrl(),
             Environment.GetEnvironmentVariable("GITHUB_REF_NAME")));
         WriteJson(outputRoot, "countries.json", countries);
+        WriteJson(outputRoot, "locales/index.json", catalog.WebsiteLocales.OrderBy(locale => locale.Locale, StringComparer.Ordinal).ToArray());
         WriteJson(outputRoot, "sources/index.json", catalog.GetSourceRegistry());
         WriteJson(outputRoot, "standards/index.json", catalog.Standards
             .OrderBy(standard => standard.Id, StringComparer.Ordinal)
@@ -77,7 +78,8 @@ public static class StaticSiteExporter
                 .ThenBy(incident => incident.Id, StringComparer.Ordinal)
                 .ToArray();
             WriteJson(outputRoot, $"incidents/{country.Id}.json", countryIncidents);
-            WriteJson(outputRoot, $"timelines/{country.Id}.json", VirtualHistoryBuilder.Create(countryIncidents));
+            WriteJson(outputRoot, $"timelines/{country.Id}.json", VirtualHistoryBuilder.Create(countryIncidents)
+                .Select(commit => commit with { Country = country.Id }).ToArray());
             WriteJson(outputRoot, $"diagnostics/{country.Id}.json", diagnostics
                 .Where(diagnostic => string.Equals(diagnostic.Country, country.Id, StringComparison.OrdinalIgnoreCase))
                 .OrderBy(diagnostic => diagnostic.Id, StringComparer.Ordinal)

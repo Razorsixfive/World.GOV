@@ -5,45 +5,50 @@
 
 @if (!Ready)
 {
-    <p role="status">Loading the historical record…</p>
+    <p role="status">@T("Loading the historical record…")</p>
 }
 else if (Incident is null)
 {
-    <section class="page-intro"><p class="eyebrow">INCIDENT REGISTER</p><h1>Incident not found</h1><p>The requested identifier is not present in the published catalog.</p><a class="text-link" href="incidents">Return to incident explorer</a></section>
+    <section class="page-intro"><p class="eyebrow">@T("INCIDENT REGISTER")</p><h1>@T("Incident not found")</h1><p>@T("The requested identifier is not present in the published catalog.")</p><a class="text-link" href="incidents">@T("Return to incident explorer")</a></section>
 }
 else
 {
-    <nav class="breadcrumb" aria-label="@Text("Breadcrumb", "Brødkrumme")"><a href="incidents">@Text("Incidents", "Hændelser")</a><span aria-hidden="true">/</span><span>@Incident.Id</span></nav>
+    <nav class="breadcrumb" aria-label="@T("Breadcrumb")"><a href="incidents">@T("Incidents")</a><span aria-hidden="true">/</span><span>@Incident.Id</span></nav>
     <section class="detail-heading">
-        <div><p class="eyebrow">@string.Join(", ", Incident.CountryIds) · @LocalizedCategory(Incident) · @Incident.Date</p><h1>@LocalizedTitle(Incident)</h1><p class="detail-id">@Text("Incident ID", "Hændelses-ID") <code>@Incident.Id</code></p>
+        <div><p class="eyebrow">@string.Join(", ", Incident.CountryIds) · @LocalizedCategory(Incident) · @Incident.Date</p><h1>@LocalizedTitle(Incident)</h1><p class="detail-id">@T("Incident ID") <code>@Incident.Id</code></p>
             @if (IsEnglishFallback) { <p class="language-fallback-note" role="status">@FallbackMessage</p> }
         </div>
-        <div class="view-switch" role="group" aria-label="@Text("Incident presentation", "Visning af hændelsen")">
-            <button class="@(DeveloperView ? "" : "selected")" @onclick="() => DeveloperView = false" aria-pressed="@(!DeveloperView)">@Text("Public view", "Offentlig visning")</button>
-            <button class="@(DeveloperView ? "selected" : "")" @onclick="() => DeveloperView = true" aria-pressed="@DeveloperView">@Text("Developer view", "Udviklervisning")</button>
+        <div class="view-switch" role="group" aria-label="@T("Incident presentation")">
+            <button class="@(DeveloperView ? "" : "selected")" @onclick="() => DeveloperView = false" aria-pressed="@(!DeveloperView)">@T("Public view")</button>
+            <button class="@(DeveloperView ? "selected" : "")" @onclick="() => DeveloperView = true" aria-pressed="@DeveloperView" lang="en" dir="ltr">Developer view</button>
         </div>
     </section>
 
     <div class="detail-layout">
         <div class="detail-main">
             <section class="panel fact-panel">
-                <div class="panel-heading"><div><p class="eyebrow">@Text("HISTORICAL FACTS", "HISTORISKE FAKTA")</p><h2>@Text("What happened", "Hvad skete der")</h2></div><span class="evidence-pill">@(Translation?.EvidenceStatus ?? Incident.Historical.EvidenceStatus)</span></div>
+                <div class="panel-heading"><div><p class="eyebrow">@T("HISTORICAL FACTS")</p><h2>@T("What happened")</h2></div><span class="evidence-pill">@T(Translation?.EvidenceStatus ?? Incident.Historical.EvidenceStatus)</span></div>
                 <p class="fact-summary">@(Translation?.HistoricalSummary ?? Incident.Historical.Summary)</p>
                 @if (!string.IsNullOrWhiteSpace(Translation?.HistoricalUncertainty ?? Incident.Historical.Uncertainty))
                 {
-                    <aside class="notice notice-info"><strong>@Text("Uncertainty", "Usikkerhed")</strong><span>@(Translation?.HistoricalUncertainty ?? Incident.Historical.Uncertainty)</span></aside>
+                    <aside class="notice notice-info"><strong>@T("Uncertainty")</strong><span>@(Translation?.HistoricalUncertainty ?? Incident.Historical.Uncertainty)</span></aside>
                 }
-                <a class="text-link" href="about#evidence">@Text("What the evidence labels mean →", "Hvad betyder evidensmærkaterne? →")</a>
+                <a class="text-link" href="about#evidence">@T("What the evidence labels mean →")</a>
             </section>
 
+            @if (Incident.Satire.Archive is { } archive)
+            {
+                <ArchiveDossier Document="@(Translation?.Archive ?? archive)" EnglishDocument="@archive" DocumentLocale="@(Translation?.Archive is null ? "en-US" : SelectedLocale)" @bind-Unredacted="ArchiveUnredacted" />
+            }
+
             <section class="panel sources-panel">
-                <div class="panel-heading"><div><p class="eyebrow">@Text("SOURCE REGISTER", "KILDEOVERSIGT")</p><h2>@Text("Sources and evidence", "Kilder og dokumentation")</h2></div><span class="count-badge">@Incident.Historical.Sources.Count</span></div>
+                <div class="panel-heading"><div><p class="eyebrow">@T("SOURCE REGISTER")</p><h2>@T("Sources and evidence")</h2></div><span class="count-badge">@Incident.Historical.Sources.Count</span></div>
                 @foreach (var sourceId in Incident.Historical.Sources)
                 {
                     var source = Data.FindSource(sourceId);
                     if (source is not null)
                     {
-                        <article class="source-row"><div class="source-mark" aria-hidden="true">↗</div><div><a href="@source.Url" target="_blank" rel="noopener noreferrer">@source.Title</a><small>@(source.Publisher ?? Text("Publisher not specified", "Udgiver ikke angivet")) · @(source.Language ?? Text("Language not specified", "Sprog ikke angivet"))</small></div></article>
+                        <article class="source-row"><div class="source-mark" aria-hidden="true">↗</div><div><a href="@source.Url" target="_blank" rel="noopener noreferrer">@source.Title</a><small>@(source.Publisher ?? T("Publisher not specified")) · @(source.Language ?? T("Language not specified"))</small></div></article>
                     }
                 }
             </section>
@@ -51,7 +56,7 @@ else
             @if (Incident.Relations.Count > 0)
             {
                 <section class="panel">
-                    <div class="panel-heading"><div><p class="eyebrow">@Text("RELATIONSHIPS", "FORBINDELSER")</p><h2>@Text("Related incidents", "Relaterede hændelser")</h2></div></div>
+                    <div class="panel-heading"><div><p class="eyebrow">@T("RELATIONSHIPS")</p><h2>@T("Related incidents")</h2></div></div>
                     <div class="related-list">
                         @foreach (var relation in Incident.Relations)
                         {
@@ -69,66 +74,54 @@ else
         <aside class="detail-side">
             @if (DeveloperView)
             {
-                <section class="panel developer-panel">
-                    <p class="eyebrow">SATIRICAL IMPLEMENTATION · FICTION</p><h2>Developer view</h2>
-                    <div class="code-line"><span>simulated commit</span><code>@Incident.Satire.CommitMessage</code></div>
-                    @if (!string.IsNullOrWhiteSpace(Incident.Satire.CodeExample))
-                    {
-                        <pre class="code-example"><code>@Incident.Satire.CodeExample</code></pre>
-                    }
-                    <div class="diagnostic-box"><strong>@Incident.Satire.DiagnosticId <span>@Incident.Satire.Severity</span></strong><p>@Incident.Satire.DiagnosticMessage</p><small>Ignored by technical build policy · not a compiler diagnostic</small></div>
-                    <div class="standard-tags"><span class="subheading">GOV STANDARDS</span>
-                        @if (Incident.Satire.Standards.Count == 0){<span class="muted">No standard linked.</span>}
-                        @foreach (var standard in Incident.Satire.Standards){<a href="@($"standards?id={standard}&country={Incident.Country}")">@standard</a>}
-                    </div>
-                    @if (Data.GetSourceCodeUrl(Incident.SourcePath) is string sourceCodeUrl)
-                    {
-                        <a class="text-link source-code-link" href="@sourceCodeUrl" target="_blank" rel="noopener noreferrer">Open source file on GitHub <span aria-hidden="true">↗</span></a>
-                    }
-                    <a class="text-link" href="history">View historical simulation <span aria-hidden="true">→</span></a>
-                </section>
+                <DeveloperImplementation Incident="@Incident" />
             }
             else
             {
-                <section class="panel public-note"><p class="eyebrow">@Text("SATIRICAL MEMO · FICTION", "SATIRISK NOTAT · FIKTION")</p><h2>@Text("From the administration", "Fra administrationen")</h2><p>@(Translation?.PublicSummary ?? Incident.Satire.PublicSummary ?? Translation?.DiagnosticMessage ?? Incident.Satire.DiagnosticMessage)</p><p class="muted">@Text("An invented joke about bureaucracy. Switch to Developer view to inspect the implementation.", "En opdigtet joke om bureaukrati. Skift til udviklervisning for at se implementeringen.")</p></section>
+                <section class="panel public-note"><p class="eyebrow">@T("SATIRICAL MEMO · FICTION")</p><h2>@T("From the administration")</h2><p>@IncidentLocalization.PublicSummary(Incident, SelectedLocale)</p><p class="muted">@T("An invented joke about bureaucracy. Switch to Developer view to inspect the implementation.")</p></section>
             }
-            <section class="panel"><p class="eyebrow">@Text("RECORD REVIEW", "GENNEMGANG AF POSTEN")</p><h2>@Text("Spotted a mistake?", "Har du fundet en fejl?")</h2><p>@Text("Include this incident ID and a source supporting your correction.", "Medtag hændelses-ID'et og en kilde, der underbygger din rettelse.")</p><a class="text-link" href="@CorrectionUrl">@Text("Suggest a correction →", "Foreslå en rettelse →")</a></section>
-            <section class="panel trace-card"><p class="eyebrow">@Text("VIRTUAL TRACE", "VIRTUELT SPOR")</p><p>@Text("Related historical records are interpretive links, not line-by-line source code authorship.", "Forbundne historiske poster er fortolkende forbindelser, ikke en linje-for-linje-fordeling af kildekodeforfatterskab.")</p><a class="text-link" href="history">@Text("Open timeline", "Åbn tidslinjen") <span aria-hidden="true">→</span></a></section>
+            <section class="panel"><p class="eyebrow">@T("RECORD REVIEW")</p><h2>@T("Spotted a mistake?")</h2><p>@T("Include this incident ID and a source supporting your correction.")</p><a class="text-link" href="@CorrectionUrl">@T("Suggest a correction →")</a></section>
+            <section class="panel trace-card" lang="en" dir="ltr"><p class="eyebrow">VIRTUAL TRACE</p><p>Related historical records are interpretive links, not line-by-line source code authorship.</p><a class="text-link" href="history">Open timeline <span aria-hidden="true">→</span></a></section>
         </aside>
     </div>
 }
 
 @code {
+    private string T(string english, params object?[] args) => Data.Translate(english, SelectedLocale, args);
     [Parameter] public string IncidentId { get; set; } = string.Empty;
     [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
     private GovernmentIncident? Incident => Data.FindIncident(IncidentId);
     private IncidentTranslation? Translation => GetTranslation(Incident);
-    private bool IsDanish => Translation is not null && SelectedLocale.StartsWith("da", StringComparison.OrdinalIgnoreCase);
-    private bool IsEnglishFallback => !SelectedLocale.Equals("en-US", StringComparison.OrdinalIgnoreCase) && Translation is null;
+    private bool IsEnglishFallback => !SelectedLocale.Equals("en-US", StringComparison.OrdinalIgnoreCase) &&
+        (string.IsNullOrWhiteSpace(Translation?.Title) || string.IsNullOrWhiteSpace(Translation?.HistoricalSummary) ||
+         Incident?.Satire.Archive is { } archive && (Translation?.Archive is not { } translated ||
+             archive.ClassifiedMessage is not null && translated.ClassifiedMessage is null ||
+             archive.DeclassifiedMessage is not null && translated.DeclassifiedMessage is null ||
+             archive.ReclassifiedMessage is not null && translated.ReclassifiedMessage is null));
     private bool DeveloperView { get; set; }
+    private bool ArchiveUnredacted { get; set; }
     private bool Ready;
-    private string FallbackMessage => SelectedLocale.StartsWith("da", StringComparison.OrdinalIgnoreCase)
-        ? "Dansk oversættelse mangler for denne hændelse; viser engelsk (EN)."
-        : $"{LanguageName(SelectedLocale)} translation is not available for this incident; showing English (EN).";
+    private string FallbackMessage => T("Some content is not available in {0}; missing text is shown in English (EN).", Data.LanguageName(SelectedLocale, native: true));
     private string CorrectionUrl => Data.Manifest?.RepositoryUrl is string url
         ? $"{url}/issues/new?template=correction.yml&title={Uri.EscapeDataString($"[Correction]: {IncidentId}")}" : "about#corrections";
 
-    private IncidentTranslation? GetTranslation(GovernmentIncident? incident) => incident?.Translations
-        .FirstOrDefault(item => string.Equals(item.Key, SelectedLocale, StringComparison.OrdinalIgnoreCase)).Value;
+    private IncidentTranslation? GetTranslation(GovernmentIncident? incident) => IncidentLocalization.ForLocale(incident, SelectedLocale);
     private string LocalizedTitle(GovernmentIncident incident) => GetTranslation(incident)?.Title ?? incident.Title;
-    private string LocalizedCategory(GovernmentIncident incident) => GetTranslation(incident)?.Category ?? incident.Category;
+    private string LocalizedCategory(GovernmentIncident incident) => T(GetTranslation(incident)?.Category ?? incident.Category);
     private string LocalizedRelationLabel(IncidentRelation relation)
     {
         if (Translation?.RelationLabels.TryGetValue(relation.IncidentId, out var label) == true) return label;
         return relation.Label;
     }
-    private string Text(string english, string danish) => IsDanish ? danish : english;
-    private static string LanguageName(string locale) => locale.ToLowerInvariant() switch
-    {
-        "de" or "de-de" => "German",
-        "da" or "da-dk" => "Danish",
-        _ => locale
-    };
     protected override async Task OnInitializedAsync() { await Data.EnsureLoadedAsync(); Ready = true; }
-    protected override void OnParametersSet() => DeveloperView = false;
+    private string? PreviousIncidentId;
+    protected override void OnParametersSet()
+    {
+        if (!string.Equals(PreviousIncidentId, IncidentId, StringComparison.OrdinalIgnoreCase))
+        {
+            DeveloperView = false;
+            ArchiveUnredacted = false;
+        }
+        PreviousIncidentId = IncidentId;
+    }
 }

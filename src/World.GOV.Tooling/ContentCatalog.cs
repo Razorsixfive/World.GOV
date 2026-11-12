@@ -19,6 +19,7 @@ public sealed class ContentCatalog : IIncidentCatalog, IHistoricalTimeline
         IReadOnlyList<GovernmentIncident> incidents,
         IReadOnlyList<StandardDocument> standards,
         IReadOnlyList<SourceReference> sources,
+        IReadOnlyList<WebsiteLocale> websiteLocales,
         IReadOnlyList<string> loadErrors)
     {
         RepositoryRoot = repositoryRoot;
@@ -26,6 +27,7 @@ public sealed class ContentCatalog : IIncidentCatalog, IHistoricalTimeline
         Incidents = incidents;
         Standards = standards;
         Sources = sources;
+        WebsiteLocales = websiteLocales;
         LoadErrors = loadErrors;
         _byCountry = incidents
             .SelectMany(incident => incident.CountryIds.Select(countryId => new { CountryId = countryId, Incident = incident }))
@@ -38,6 +40,7 @@ public sealed class ContentCatalog : IIncidentCatalog, IHistoricalTimeline
     public IReadOnlyList<GovernmentIncident> Incidents { get; }
     public IReadOnlyList<StandardDocument> Standards { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
+    public IReadOnlyList<WebsiteLocale> WebsiteLocales { get; }
     public IReadOnlyList<string> LoadErrors { get; }
 
     public static string FindRepositoryRoot(string? startDirectory = null)
@@ -178,7 +181,8 @@ public sealed class ContentCatalog : IIncidentCatalog, IHistoricalTimeline
             }
         }
 
-        return new ContentCatalog(root, countries, incidents, standards, sources, errors);
+        var websiteLocales = WebsiteTranslations.Load(root, errors);
+        return new ContentCatalog(root, countries, incidents, standards, sources, websiteLocales, errors);
     }
 
     public IReadOnlyCollection<GovernmentIncident> GetByCountry(string countryId) =>

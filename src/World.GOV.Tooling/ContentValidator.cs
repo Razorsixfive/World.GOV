@@ -15,6 +15,7 @@ public static partial class ContentValidator
     public static IReadOnlyList<ValidationIssue> Validate(ContentCatalog catalog)
     {
         var issues = new List<ValidationIssue>();
+        issues.AddRange(WebsiteTranslations.Validate(catalog.WebsiteLocales));
         foreach (var error in catalog.LoadErrors)
             issues.Add(new ValidationIssue("ERROR", "GOVDATA001", error));
 
@@ -137,6 +138,15 @@ public static partial class ContentValidator
                 issues.Add(new ValidationIssue("ERROR", "GOVDATA025", $"Incident {incident.Id} needs a simulated commit message and GOV diagnostic id/message.", incident.SourcePath));
             if (!DiagnosticSeverities.Contains(incident.Satire.Severity))
                 issues.Add(new ValidationIssue("ERROR", "GOVDATA026", $"Incident {incident.Id} has unsupported diagnostic severity '{incident.Satire.Severity}'.", incident.SourcePath));
+
+            foreach (var (locale, translation) in incident.Translations)
+            {
+                if (translation.Archive is not { } translated) continue;
+                var canonical = incident.Satire.Archive;
+                if (canonical is null || translated.Id != canonical.Id ||
+                    !translated.Lines.Select(line => line.Redacted).SequenceEqual(canonical.Lines.Select(line => line.Redacted)))
+                    issues.Add(new ValidationIssue("ERROR", "GOVDATA041", $"Archive translation {locale} for {incident.Id} must preserve the canonical archive id, line count, and redaction flags at each position.", incident.SourcePath));
+            }
 
             foreach (var relation in incident.Relations)
             {

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1982-001",
+  "countryIds": ["DK"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 1982, "month": null, "day": null, "endYear": 1988,
+    "precision": "range", "calendar": "gregorian", "circa": false,
+    "displayText": "1982–1988"
+  },
+  "category": "International",
+  "title": "Denmark's Footnote Policy: Reservations in the Small Print",
+  "historical": {
+    "summary": "During 1982–1988, an alternative parliamentary majority required Danish governments to express reservations about a number of NATO positions, particularly on nuclear weapons policy. These reservations often appeared as footnotes in NATO texts. One example is the December 1983 Defence Planning Committee communiqué, which records Danish and Greek reservations on paragraph 5 concerning intermediate-range nuclear forces.",
+    "evidenceStatus": "Documented",
+    "uncertainty": "The date range describes a political period, not one decision. Reservations concerned particular positions rather than withdrawal from NATO. The wider merits and consequences of the policy remain debated; this entry records the parliamentary mechanism and a published example.",
+    "sources": ["SRC-DK-029", "SRC-DK-030"]
+  },
+  "satire": {
+    "publicSummary": "The headline says Agreed. The qualification has moved to a footnote, where it can change the meaning without disturbing the headline's excellent approval rating.",
+    "codeExample": "Decision.Headline = \"Agreed*\";\nDecision.Reservations.Add(Denmark.Position);\nExecutiveSummary.IncludeFootnotes = false;\nArchive.Preserve(Decision.Reservations);",
+    "archive": {
+      "id": "SIM-ARCHIVE-DK-1982-001",
+      "title": "Consensus export: the asterisk carries the decision",
+      "classifiedMessage": "Consensus confirmed. Conditions withheld.",
+      "declassifiedMessage": "The asterisk has entered the room.",
+      "reclassifiedMessage": "Headline unanimous again. Reservations unchanged.",
+      "lines": [
+        {"label": "Executive headline", "text": "Agreed.*", "redacted": false},
+        {"label": "Reservation", "text": "* The reservation is part of the position. Please read beyond the headline.", "redacted": true},
+        {"label": "Export setting", "text": "Hide footnotes from the executive summary; retain them in the actual record.", "redacted": true},
+        {"label": "Space allocation", "text": "One line for agreement. The remaining pages explain its scope.", "redacted": false},
+        {"label": "Reader instruction", "text": "If the asterisk changes the meaning, it is not decoration.", "redacted": true},
+        {"label": "Administrative conclusion", "text": "Consensus occupies the headline. Disagreement has been allocated a smaller font.", "redacted": false}
+      ]
+    },
+    "commitMessage": "feat(consensus): move national reservations below the executive summary",
+    "diagnosticId": "GOV1982",
+    "diagnosticMessage": "Headline agreement detected; the attached reservation prevents a simple unanimous result.",
+    "severity": "WARNING",
+    "standards": ["GOV-007", "GOV-021"],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "translations": {
+    "da-DK": {
+      "title": "Fodnotepolitikken: Danske forbehold med småt",
+      "historicalSummary": "I perioden 1982–1988 pålagde et alternativt flertal i Folketinget de danske regeringer at fremføre forbehold over for en række NATO-standpunkter, især om kernevåbenpolitikken. Forbeholdene optrådte ofte som fodnoter i NATO-tekster. Et eksempel er Forsvarsplanlægningskomitéens kommuniké fra december 1983, som registrerer danske og græske forbehold over for afsnit 5 om mellemdistanceraketter med atomvåben.",
+      "historicalUncertainty": "Datointervallet beskriver en politisk periode, ikke én beslutning. Forbeholdene gjaldt bestemte standpunkter frem for udtræden af NATO. Politikkens overordnede berettigelse og konsekvenser er fortsat omdiskuterede; registreringen beskriver den parlamentariske mekanisme og et offentliggjort eksempel.",
+      "publicSummary": "Overskriften siger Enighed. Forbeholdet er flyttet til en fodnote, hvor det kan ændre betydningen uden at forstyrre overskriftens fremragende tilslutningstal.",
+      "archive": {
+        "id": "SIM-ARCHIVE-DK-1982-001",
+        "title": "Eksport af enighed: Stjernen bærer beslutningen",
+        "classifiedMessage": "Enigheden er bekræftet. Betingelserne er tilbageholdt.",
+        "declassifiedMessage": "Stjernen har meldt sin ankomst.",
+        "reclassifiedMessage": "Overskriften er enstemmig igen. Forbeholdene er uændrede.",
+        "lines": [
+          {"label": "Ledelsesoverskrift", "text": "Enighed.*", "redacted": false},
+          {"label": "Forbehold", "text": "* Forbeholdet er en del af standpunktet. Læs venligst videre efter overskriften.", "redacted": true},
+          {"label": "Eksportindstilling", "text": "Skjul fodnoter i ledelsesresuméet; behold dem i den egentlige registrering.", "redacted": true},
+          {"label": "Pladsfordeling", "text": "Én linje til enighed. De resterende sider forklarer dens omfang.", "redacted": false},
+          {"label": "Læsevejledning", "text": "Hvis stjernen ændrer betydningen, er den ikke pynt.", "redacted": true},
+          {"label": "Administrativ konklusion", "text": "Enigheden fylder overskriften. Uenigheden har fået tildelt en mindre skrifttype.", "redacted": false}
+        ]
+      },
+      "relationLabels": {"DK-1949-001": "Alliancen, som de danske forbehold blev fremført i"}
+    }
+  },
+  "relations": [
+    {"incidentId": "DK-1949-001", "type": "AlliancePolicyContext", "label": "The alliance within which the Danish reservations were expressed"}
+  ],
+  "tags": ["Cold War", "NATO", "footnote policy", "parliament", "archive"],
+  "sourcePath": "countries/denmark/incidents/DK-1982-001.json"
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1962-001",
+  "countryIds": ["DK"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 1962, "month": 1, "day": null, "endYear": null,
+    "precision": "month", "calendar": "gregorian", "circa": false,
+    "displayText": "January 1962"
+  },
+  "category": "PublicAdministration",
+  "title": "If War Comes: Civil Defence Arrives by Post",
+  "historical": {
+    "summary": "In January 1962, the Danish Prime Minister's Office distributed the leaflet Hvis krigen kommer to all Danish households. It described wartime dangers, including nuclear attack, and gave advice on shelter, evacuation, and household preparations. A Civil Defence memorandum dated 6 February 1962 defended the planning assumptions behind the guidance in response to criticism.",
+    "evidenceStatus": "Documented",
+    "uncertainty": "The event date records the month of distribution. The memorandum presents the administration's defence of its planning, not an independent evaluation of its effectiveness. This entry describes historical guidance rather than current emergency advice.",
+    "sources": ["SRC-DK-027", "SRC-DK-028"]
+  },
+  "satire": {
+    "publicSummary": "The leaflet has been dispatched. The administration's dashboard now counts every letterbox as a prepared household. Reading and understanding remain outside the postal service's delivery contract.",
+    "codeExample": "var delivery = Post.SendToAllHouseholds(leaflet);\nReport.Preparedness = delivery.ReceiptCount;\nReport.Evidence = \"envelopes delivered\";\nAudit.Redact(\"readiness not measured\");",
+    "archive": {
+      "id": "SIM-ARCHIVE-DK-1962-001",
+      "title": "Dispatch audit: preparedness by postage",
+      "classifiedMessage": "The readiness metric is restricted.",
+      "declassifiedMessage": "We counted envelopes.",
+      "reclassifiedMessage": "Envelopes counted. Readiness still unmeasured.",
+      "lines": [
+        {"label": "Declared objective", "text": "Inform every household. File the dispatch receipt.", "redacted": false},
+        {"label": "Readiness metric", "text": "Number of envelopes processed by the administration.", "redacted": true},
+        {"label": "Evidence collected", "text": "Delivery recorded. Reading, understanding, and practical preparation were not measured by the receipt.", "redacted": true},
+        {"label": "Reporting shortcut", "text": "Move the delivery total into the preparedness column. Keep the original column heading in the audit copy.", "redacted": false},
+        {"label": "Audit objection", "text": "A letterbox cannot confirm that a household is prepared.", "redacted": true},
+        {"label": "Administrative conclusion", "text": "The mailing is complete. The question is still open.", "redacted": false}
+      ]
+    },
+    "commitMessage": "feat(preparedness): derive national readiness from postal delivery receipts",
+    "diagnosticId": "GOV1962",
+    "diagnosticMessage": "Distribution completed; the dashboard has mistaken delivery evidence for readiness evidence.",
+    "severity": "WARNING",
+    "standards": ["GOV-007", "GOV-020"],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "translations": {
+    "da-DK": {
+      "title": "Hvis krigen kommer: Civilforsvaret ankommer med posten",
+      "historicalSummary": "I januar 1962 udsendte Statsministeriet pjecen Hvis krigen kommer til samtlige danske husstande. Den beskrev farer ved krig, herunder atomangreb, og gav råd om beskyttelsesrum, evakuering og forberedelser i hjemmet. Et notat fra Civilforsvaret dateret den 6. februar 1962 forsvarede planlægningsforudsætningerne bag vejledningen som svar på kritik.",
+      "historicalUncertainty": "Begivenhedens dato angiver omdelingsmåneden. Notatet fremlægger administrationens forsvar for sin planlægning, ikke en uafhængig vurdering af dens virkning. Registreringen beskriver historisk vejledning frem for nutidige beredskabsråd.",
+      "publicSummary": "Pjecen er afsendt. Administrationens dashboard tæller nu hver postkasse som en beredt husstand. Læsning og forståelse ligger uden for postvæsenets leveringsaftale.",
+      "archive": {
+        "id": "SIM-ARCHIVE-DK-1962-001",
+        "title": "Omdelingsrevision: Beredskab målt i porto",
+        "classifiedMessage": "Beredskabsmålet er fortroligt.",
+        "declassifiedMessage": "Vi talte kuverter.",
+        "reclassifiedMessage": "Kuverterne er talt. Beredskabet er stadig ikke målt.",
+        "lines": [
+          {"label": "Erklæret formål", "text": "Oplys hver husstand. Arkivér kvitteringen for afsendelsen.", "redacted": false},
+          {"label": "Beredskabsmål", "text": "Antal kuverter behandlet af administrationen.", "redacted": true},
+          {"label": "Indsamlet dokumentation", "text": "Leveringen er registreret. Kvitteringen målte hverken læsning, forståelse eller praktiske forberedelser.", "redacted": true},
+          {"label": "Genvej i rapporteringen", "text": "Flyt leveringstallet til beredskabskolonnen. Behold den oprindelige kolonneoverskrift i revisionskopien.", "redacted": false},
+          {"label": "Revisionens indvending", "text": "En postkasse kan ikke bekræfte, at en husstand er beredt.", "redacted": true},
+          {"label": "Administrativ konklusion", "text": "Omdelingen er afsluttet. Spørgsmålet er stadig åbent.", "redacted": false}
+        ]
+      },
+      "relationLabels": {"DK-1963-001": "Et andet dansk beredskabstiltag fra Den Kolde Krig"}
+    }
+  },
+  "relations": [
+    {"incidentId": "DK-1963-001", "type": "ColdWarPreparedness", "label": "Another Danish Cold War preparedness measure"}
+  ],
+  "tags": ["Cold War", "civil defence", "public information", "preparedness", "archive"],
+  "sourcePath": "countries/denmark/incidents/DK-1962-001.json"
+}

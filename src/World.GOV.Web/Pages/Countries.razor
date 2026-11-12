@@ -1,30 +1,32 @@
 @page "/countries"
 @inject PortalDataService Data
 
-<PageTitle>Countries · World.GOV</PageTitle>
+<PageTitle>@T("Countries") · World.GOV</PageTitle>
 
 <section class="page-intro">
-    <p class="eyebrow">COUNTRY MODULE REGISTRY</p>
-    <h1>Countries</h1>
-    <p>Shared contracts with independently maintained national histories.</p>
+    <p class="eyebrow">@T("COUNTRY MODULE REGISTRY")</p>
+    <h1>@T("Countries")</h1>
+    <p>@T("Shared contracts with independently maintained national histories.")</p>
 </section>
 
 <div class="country-grid">
     @foreach (var country in Data.Countries.OrderBy(item => item.DisplayName, StringComparer.Ordinal))
     {
-        var incidents = Data.Incidents.Where(item => item.Country == country.Id).ToArray();
+        var incidents = Data.GetIncidentsByCountry(country.Id).ToArray();
         <article class="panel country-card">
-            <div class="country-card-top"><span class="country-code">@country.Id</span><span class="detail-chip">@(country.ExtensionAssembly is null ? "DATA-ONLY MODULE" : "REFERENCE MODULE")</span></div>
+            <div class="country-card-top"><span class="country-code">@country.Id</span><span class="detail-chip">@(country.ExtensionAssembly is null ? T("DATA-ONLY MODULE") : T("REFERENCE MODULE"))</span></div>
             <p class="eyebrow">@country.Slug</p>
             <h2>@country.DisplayName</h2>
             <p class="native-name">@country.NativeName</p>
-            <div class="country-stats"><span><strong>@incidents.Length</strong> incidents</span><span><strong>@country.SupportedLocales.Count</strong> locales</span></div>
-            <p class="country-coverage">Coverage begins @country.HistoricalCoverage.StartYear. @(country.HistoricalCoverage.EndYear is null ? "Current coverage is open-ended." : $"Coverage ends {country.HistoricalCoverage.EndYear}.")</p>
-            <a class="text-link" href="@($"country/{country.Id}")">Explore @country.DisplayName <span aria-hidden="true">→</span></a>
+            <div class="country-stats"><span>@T("{0} incidents", incidents.Length)</span><span>@T("{0} locales", country.SupportedLocales.Count)</span></div>
+            <p class="country-coverage">@T("Coverage begins {0}.", country.HistoricalCoverage.StartYear) @(country.HistoricalCoverage.EndYear is null ? T("Current coverage is open-ended.") : T("Coverage ends {0}.", country.HistoricalCoverage.EndYear))</p>
+            <a class="text-link" href="@($"country/{country.Id}")">@T("Explore {0}", country.DisplayName) <span aria-hidden="true">→</span></a>
         </article>
     }
 </div>
 
 @code {
+    private string T(string english, params object?[] args) => Data.Translate(english, SelectedLocale, args);
+    [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
     protected override Task OnInitializedAsync() => Data.EnsureLoadedAsync();
 }

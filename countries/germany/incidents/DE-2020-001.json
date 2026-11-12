@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "DE-2020-001",
+  "countryIds": ["DE"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 2020,
+    "month": 10,
+    "day": 31,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "31 October 2020"
+  },
+  "category": "Infrastructure",
+  "title": "Berlin Brandenburg Airport Opens",
+  "historical": {
+    "summary": "Terminal 1 of Berlin Brandenburg Airport (BER) opened on 31 October 2020 after repeated postponements. The operator's chronology records a planned 30 October 2011 opening, moved to 3 June 2012; that date was withdrawn on 8 May 2012 because construction completion and building acceptance could not be achieved in time. The southern runway opened on 4 November 2020, and flight operations at Tegel ended on 8 November, as separate stages of the transfer.",
+    "evidenceStatus": "Documented",
+    "sources": ["SRC-DE-005", "SRC-DE-006"]
+  },
+  "satire": {
+    "publicSummary": "The airport is open. Previous opening announcements have been reclassified as calendar rehearsals. Moving a date remains considerably faster than commissioning a terminal.",
+    "codeExample": "var previousAnnouncements = schedule.History;\nvar opening = terminal.OpenAfterAcceptance();\nArchive(previousAnnouncements, category: \"Calendar rehearsals\");",
+    "commitMessage": "feat(airport): replace the latest opening announcement with an actual opening",
+    "diagnosticId": "GOV2020",
+    "diagnosticMessage": "Earlier opening dates have been archived. Calendar maintenance did not complete the terminal.",
+    "severity": "WARNING",
+    "standards": ["GOV-DE-002"],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [],
+  "tags": ["Berlin", "Brandenburg", "BER", "airport", "infrastructure", "project scheduling"],
+  "translations": {
+    "da-DK": {
+      "title": "Berlin Brandenburg-lufthavnen åbner",
+      "category": "Infrastruktur",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Terminal 1 i Berlin Brandenburg-lufthavnen (BER) åbnede den 31. oktober 2020 efter gentagne udsættelser. Operatørens tidslinje angiver en planlagt åbning den 30. oktober 2011, som blev flyttet til den 3. juni 2012; den 8. maj 2012 blev også denne dato opgivet, fordi byggeriets færdiggørelse og bygningsgodkendelsen ikke kunne nås i tide. Den sydlige start- og landingsbane åbnede den 4. november 2020, og flydriften i Tegel ophørte den 8. november som særskilte etaper af overflytningen.",
+      "publicSummary": "Lufthavnen er åben. Tidligere åbningsmeddelelser er blevet omklassificeret til kalenderprøver. Det går stadig væsentligt hurtigere at flytte en dato end at tage en terminal i brug."
+    }
+  }
+}

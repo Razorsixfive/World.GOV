@@ -1,46 +1,48 @@
 @page "/history"
 @inject PortalDataService Data
 
-<PageTitle>History · World.GOV</PageTitle>
+<PageTitle>@T("History") · World.GOV</PageTitle>
 
-<section class="page-intro"><p class="eyebrow">VIRTUAL GIT</p><h1>Historical timeline</h1><p>Events are ordered by historical date and rendered as clearly fictional simulation commits. Choose all countries, a geographic region, or one country. Shared events appear once, with country perspectives linked from the event.</p></section>
+<section class="page-intro"><p class="eyebrow">@T("VIRTUAL GIT")</p><h1>@T("Historical timeline")</h1><p>@T("Events are ordered by historical date and rendered as clearly fictional simulation commits. Choose all countries, a geographic region, or one country. Shared events appear once, with country perspectives linked from the event.")</p></section>
 
-<section class="notice notice-info history-disclaimer"><strong>Two histories, clearly separated.</strong><span>Virtual history describes historical events. Authentic Git history records development of this repository. Simulation hashes below never represent real Git commits.</span></section>
+<section class="notice notice-info history-disclaimer"><strong>@T("Two histories, clearly separated.")</strong><span>@T("Virtual history describes historical events. Authentic Git history records development of this repository. Simulation hashes below never represent real Git commits.")</span></section>
 
 <div class="history-layout">
     <section class="panel timeline-panel">
-        <div class="panel-heading"><div><p class="eyebrow">HISTORICAL SIMULATION</p><h2>Event stream</h2></div><label class="inline-select"><span class="visually-hidden">Choose timeline scope</span><select @bind="TimelineScope"><option value="all">All countries</option><optgroup label="Regions">@foreach (var region in RegionOptions){<option value="@($"region:{region}")">@region</option>}</optgroup><optgroup label="Countries">@foreach (var country in Data.Countries){<option value="@($"country:{country.Id}")">@country.DisplayName</option>}</optgroup></select></label></div>
+        <div class="panel-heading"><div><p class="eyebrow">@T("HISTORICAL SIMULATION")</p><h2>@T("Event stream")</h2></div><label class="inline-select"><span class="visually-hidden">@T("Choose timeline scope")</span><select @bind="TimelineScope"><option value="all">@T("All countries")</option><optgroup label="@T("Regions")">@foreach (var region in RegionOptions){<option value="@($"region:{region}")">@T(region)</option>}</optgroup><optgroup label="@T("Countries")">@foreach (var country in Data.Countries){<option value="@($"country:{country.Id}")">@country.DisplayName</option>}</optgroup></select></label></div>
         @if (!VisibleTimeline.Any())
         {
-            <p class="empty-state">No timeline entries in this scope yet.</p>
+            <p class="empty-state">@T("No timeline entries in this scope yet.")</p>
         }
         @foreach (var perspectives in VisibleTimeline)
         {
             var commit = PreferredPerspective(perspectives);
             var incident = Data.FindIncident(commit.IncidentId);
-            var isSharedEvent = perspectives.Select(perspective => perspective.Country).Distinct(StringComparer.OrdinalIgnoreCase).Count() > 1;
+            var linkedPerspectives = perspectives.DistinctBy(perspective => perspective.IncidentId, StringComparer.OrdinalIgnoreCase).ToArray();
+            var isSharedEvent = linkedPerspectives.Length > 1;
             <article class="timeline-entry">
                 <div class="timeline-marker" aria-hidden="true"></div>
-                <div class="timeline-date">@perspectives[0].Date</div>
+                <div class="timeline-date">@commit.Date</div>
                 <div class="timeline-body">
-                    <span class="simulation-label">@(isSharedEvent ? "SHARED HISTORICAL EVENT" : commit.Label)</span>
+                    <span class="simulation-label" lang="en" dir="ltr">@(isSharedEvent ? "SHARED HISTORICAL EVENT" : commit.Label)</span>
                     <h3>@(incident is null ? commit.IncidentId : IncidentLocalization.Title(incident, SelectedLocale))</h3>
-                    <p class="timeline-message">@(incident is null ? commit.Message : incident.Satire.CommitMessage)</p>
-                    <div class="timeline-meta"><code>@commit.Hash</code>@foreach (var perspective in perspectives){var perspectiveCountry = Data.FindCountry(perspective.Country);<a href="@($"incident/{perspective.IncidentId}")">@(isSharedEvent ? $"{perspectiveCountry?.DisplayName ?? perspective.Country} perspective" : "Open incident")</a>}</div>
+                    <p class="timeline-message" lang="en" dir="ltr">@(incident is null ? commit.Message : incident.Satire.CommitMessage)</p>
+                    <div class="timeline-meta"><code lang="en" dir="ltr">@commit.Hash</code>@foreach (var perspective in linkedPerspectives){var perspectiveCountry = Data.FindCountry(perspective.Country);<a href="@($"incident/{perspective.IncidentId}")">@(isSharedEvent ? T("{0} perspective", perspectiveCountry?.DisplayName ?? perspective.Country) : T("Open incident"))</a>}</div>
                 </div>
             </article>
         }
     </section>
     <aside class="panel history-side">
-        <p class="eyebrow">TRACE / BLAME</p><h2>Interpretive links</h2>
-        <p>Virtual blame connects an event to related records, standards, and source files. It does not claim authorship of actual code lines.</p>
-        <div class="terminal-card"><span>$ worldgov history DK</span><strong>Historical simulation</strong><small>Dates represent events, not software commits.</small></div>
-        <div class="terminal-card"><span>$ worldgov real-history</span><strong>Authentic Git log</strong><small>Uses the repository's actual Git metadata.</small></div>
-        <p class="muted">A terminal shown in this portal is read-only. It does not run commands in the visitor's browser.</p>
+        <p class="eyebrow">TRACE / BLAME</p><h2>@T("Interpretive links")</h2>
+        <p>@T("Virtual blame connects an event to related records, standards, and source files. It does not claim authorship of actual code lines.")</p>
+        <div class="terminal-card" lang="en" dir="ltr"><span>$ worldgov history DK</span><strong>Historical simulation</strong><small>Dates represent events, not software commits.</small></div>
+        <div class="terminal-card" lang="en" dir="ltr"><span>$ worldgov real-history</span><strong>Authentic Git log</strong><small>Uses the repository's actual Git metadata.</small></div>
+        <p class="muted">@T("A terminal shown in this portal is read-only. It does not run commands in the visitor's browser.")</p>
     </aside>
 </div>
 
 @code {
+    private string T(string english, params object?[] args) => Data.Translate(english, SelectedLocale, args);
     [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
     private static readonly string[] RegionOptions = ["Africa", "Antarctica", "Asia", "Europe", "North America", "Oceania", "South America"];
     private string TimelineScope { get; set; } = "all";
@@ -52,7 +54,8 @@
         .GroupBy(TimelineGroupKey, StringComparer.OrdinalIgnoreCase)
         .Select(group => (IReadOnlyList<VirtualCommit>)group.ToArray())
         .Where(group => group.Any(MatchesTimelineScope))
-        .OrderBy(group => group[0].Date, StringComparer.Ordinal);
+        .OrderBy(group => group[0].HistoricalDate)
+        .ThenBy(group => group[0].IncidentId, StringComparer.Ordinal);
 
     private string TimelineGroupKey(VirtualCommit commit)
     {

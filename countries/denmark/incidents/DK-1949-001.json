@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "DK-1949-001",
+  "countryIds": ["DK"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 1949, "month": 4, "day": 4, "endYear": null,
+    "precision": "day", "calendar": "gregorian", "circa": false,
+    "displayText": "4 April 1949"
+  },
+  "category": "International",
+  "title": "Denmark Signs the North Atlantic Treaty",
+  "historical": {
+    "summary": "Denmark was one of the twelve founding signatories of the North Atlantic Treaty, signed in Washington on 4 April 1949. Foreign Minister Gustav Rasmussen signed for Denmark. The decision marked a departure from Denmark's earlier policy of neutrality. Article 5 established collective defence: each ally undertakes to assist an attacked ally with the action it considers necessary, including the use of armed force.",
+    "evidenceStatus": "Documented",
+    "uncertainty": "The event date records the signing, not the treaty's entry into force on 24 August 1949. Collective defence does not prescribe an identical military response from every member.",
+    "sources": ["SRC-DK-021", "SRC-DK-022", "SRC-DK-026"]
+  },
+  "satire": {
+    "publicSummary": "Standalone mode has been retired. The replacement security arrangement has twelve signatories and no single help desk. Each participant still has to implement its own response.",
+    "codeExample": "Defence.Dependencies.Add(\"NATO\");\nDefence.Standalone = false;\nDefence.ResponseFactory = member => member.DecideNecessaryAction();\nSupport.SingleHelpDesk = null;",
+    "commitMessage": "feat(defence): replace standalone mode with an alliance dependency",
+    "diagnosticId": "GOV1949",
+    "diagnosticMessage": "Shared defence registered; national response implementations remain required.",
+    "severity": "INFO",
+    "standards": ["GOV-019"],
+    "acknowledged": true,
+    "ignoredByPolicy": false
+  },
+  "translations": {
+    "da-DK": {
+      "title": "Danmark underskriver Den Nordatlantiske Traktat",
+      "historicalSummary": "Danmark var blandt de tolv oprindelige underskrivere af Den Nordatlantiske Traktat, der blev underskrevet i Washington den 4. april 1949. Udenrigsminister Gustav Rasmussen underskrev for Danmark. Beslutningen markerede et brud med Danmarks tidligere neutralitetspolitik. Artikel 5 fastlagde det kollektive forsvar: Hver allieret forpligter sig til at hjælpe en angrebet allieret med de handlinger, den anser for nødvendige, herunder brug af væbnet magt.",
+      "historicalUncertainty": "Begivenhedens dato angiver underskrivelsen, ikke traktatens ikrafttræden den 24. august 1949. Det kollektive forsvar foreskriver ikke en ensartet militær reaktion fra alle medlemmer.",
+      "publicSummary": "Drift på egen hånd er udfaset. Den nye sikkerhedsordning har tolv underskrivere og ingen fælles helpdesk. Hver deltager skal stadig selv implementere sin reaktion.",
+      "relationLabels": {"DK-1963-001": "Et senere dansk beredskabsanlæg fra Den Kolde Krig"}
+    }
+  },
+  "relations": [
+    {"incidentId": "DK-1963-001", "type": "ColdWarContext", "label": "A later Danish Cold War continuity facility"}
+  ],
+  "tags": ["Cold War", "NATO", "collective defence", "international"],
+  "sourcePath": "countries/denmark/incidents/DK-1949-001.json"
+}

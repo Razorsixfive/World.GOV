@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "DE-1949-001",
+  "countryIds": ["DE"],
+  "regions": ["Europe"],
+  "date": {
+    "startYear": 1949,
+    "month": 5,
+    "day": 23,
+    "endYear": null,
+    "precision": "day",
+    "calendar": "gregorian",
+    "circa": false,
+    "displayText": "23 May 1949"
+  },
+  "category": "Political",
+  "title": "The Basic Law Is Promulgated",
+  "historical": {
+    "summary": "The Parliamentary Council signed and promulgated the Basic Law in Bonn on 23 May 1949. It entered into force in the night of 23–24 May and established the Federal Republic's democratic and federal constitutional framework. Its provisional framing reflected the division of Germany and the goal of reunification; the Basic Law remained the constitutional framework when reunification took place in 1990.",
+    "evidenceStatus": "Documented",
+    "sources": ["SRC-DE-004"]
+  },
+  "satire": {
+    "publicSummary": "The constitutional framework has been labelled provisional. Its protections are enabled in production; an automatic expiry timer has not been installed. Please distinguish temporary naming from optional rights.",
+    "codeExample": "const string lifecycleLabel = \"Provisional\";\nDateOnly? automaticExpiry = null;\nProtectFundamentalRights();",
+    "commitMessage": "feat(constitution): deploy a provisional label with durable guarantees",
+    "diagnosticId": "GOV1949",
+    "diagnosticMessage": "The provisional label has no automatic expiry timer. Constitutional guarantees are not an optional feature flag.",
+    "severity": "INFO",
+    "standards": ["GOV-DE-001"],
+    "acknowledged": true,
+    "ignoredByPolicy": true
+  },
+  "relations": [
+    {
+      "incidentId": "DE-1990-001",
+      "type": "ConstitutionalContinuity",
+      "label": "Reunification in 1990 used the Basic Law's accession framework"
+    }
+  ],
+  "tags": ["Basic Law", "Grundgesetz", "constitutional history", "democracy", "federalism"],
+  "translations": {
+    "da-DK": {
+      "title": "Forbundsrepublikkens grundlov kundgøres",
+      "category": "Politisk",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Det Parlamentariske Råd underskrev og kundgjorde Grundgesetz i Bonn den 23. maj 1949. Den trådte i kraft natten mellem den 23. og 24. maj og dannede det demokratiske og føderale forfatningsgrundlag for Forbundsrepublikken. Den oprindelige betoning af en foreløbig ordning afspejlede Tysklands deling og målet om genforening; Grundgesetz forblev forfatningsgrundlaget ved genforeningen i 1990.",
+      "publicSummary": "Forfatningsgrundlaget er mærket foreløbigt. Rettighedsbeskyttelsen er slået til i produktion; der er ikke installeret en automatisk udløbstimer. Skeln venligst mellem midlertidig navngivning og valgfrie rettigheder.",
+      "relationLabels": {
+        "DE-1990-001": "Genforeningen i 1990 skete inden for Grundgesetz' rammer for tiltrædelse"
+      }
+    }
+  }
+}

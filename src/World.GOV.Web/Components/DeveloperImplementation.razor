@@ -1,0 +1,24 @@
+@inject PortalDataService Data
+
+<section class="panel developer-panel" lang="en" dir="ltr">
+    <p class="eyebrow">SATIRICAL IMPLEMENTATION · FICTION</p><h2>Developer view</h2>
+    <div class="code-line"><span>simulated commit</span><code>@Incident.Satire.CommitMessage</code></div>
+    @if (!string.IsNullOrWhiteSpace(Incident.Satire.CodeExample))
+    {
+        <pre class="code-example"><code>@Incident.Satire.CodeExample</code></pre>
+    }
+    <div class="diagnostic-box"><strong>@Incident.Satire.DiagnosticId <span>@Incident.Satire.Severity</span></strong><p>@Incident.Satire.DiagnosticMessage</p><small>Ignored by technical build policy · not a compiler diagnostic</small></div>
+    <div class="standard-tags"><span class="subheading">GOV STANDARDS</span>
+        @if (Incident.Satire.Standards.Count == 0){<span class="muted">No standard linked.</span>}
+        @foreach (var standard in Incident.Satire.Standards){<a href="@($"standards?id={standard}&country={Incident.Country}")">@standard</a>}
+    </div>
+    @if (Data.GetSourceCodeUrl(Incident.SourcePath) is string sourceCodeUrl)
+    {
+        <a class="text-link source-code-link" href="@sourceCodeUrl" target="_blank" rel="noopener noreferrer">Open source file on GitHub <span aria-hidden="true">↗</span></a>
+    }
+    <a class="text-link" href="history">View historical simulation <span aria-hidden="true">→</span></a>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public GovernmentIncident Incident { get; set; } = default!;
+}

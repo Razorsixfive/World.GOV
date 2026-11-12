@@ -4,6 +4,10 @@ Start with the paired folders in `templates/NO_COUNTRY` and `templates/NO_COUNTR
 
 World.GOV welcomes small, reviewable contributions to shared tooling and country histories.
 
+## Translations
+
+English remains the default for the project, all code, Developer view, simulated commits, GOV diagnostics, compiler/terminal output, and standards. Contributors can translate the public interface in `locales/<locale>.json` and public incident content in its existing `translations` object. Missing translations fall back to English. Start with [the translation guide](docs/contributing/translations.md); adding a language needs no C# or country module. English and Danish are maintained here; other languages are community contributions.
+
 ## Historical content
 
 - Keep historical facts, interpretation, and fictional satire in distinct fields.
@@ -13,6 +17,8 @@ World.GOV welcomes small, reviewable contributions to shared tooling and country
 - Keep original-language source titles intact and include the source language.
 
 ## Country modules and incidents
+
+Before adding content, check the country's `incidents/README.md` and `standards/README.md` indexes and open possible matches. Check other countries for shared events and overlapping rules. Reuse or correct an existing record when it covers the same event and perspective. Keep one short linked row per file: incidents by event start date (then ID), standards by adoption date when known, otherwise ID with the missing chronology stated. Update indexes alongside the records and manifest; keep index READMEs out of `incidentFiles` and `standardFiles`.
 
 1. Copy `templates/NO_COUNTRY` to `countries/<slug>`.
 2. Copy `templates/NO_COUNTRY.NET` to `src/<CountryName>.NET`, then rename `NO_COUNTRY.NET.csproj` to `<CountryName>.NET.csproj`. This is ready-to-build boilerplate; contributors can leave its C# code unchanged while filling in the JSON data.

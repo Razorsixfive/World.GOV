@@ -32,6 +32,9 @@ public sealed record IncidentTranslation
     public string? HistoricalSummary { get; init; }
     public string? HistoricalUncertainty { get; init; }
     public string? PublicSummary { get; init; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ArchiveDocument? Archive { get; init; }
+    // Legacy translation fields are retained for the v1 data contract but never used for developer output.
     public string? CommitMessage { get; init; }
     public string? DiagnosticMessage { get; init; }
     public IReadOnlyDictionary<string, string> RelationLabels { get; init; } = new Dictionary<string, string>();

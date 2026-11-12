@@ -30,6 +30,7 @@ public static class WorldGovCommand
                 "trace" or "blame" => ShowTrace(catalog, args),
                 "diagnostics" => ShowDiagnostics(catalog, args),
                 "standards" => ListStandards(catalog, args),
+                "translations" => ManageTranslations(catalog, args),
                 "build-report" => ShowBuildReport(root),
                 "real-history" => RunGit(root, ["log", "--date=short", "--pretty=format:%h %ad %s"]),
                 "real-blame" => RunRealBlame(root, args),
@@ -164,6 +165,26 @@ public static class WorldGovCommand
         return 0;
     }
 
+    private static int ManageTranslations(ContentCatalog catalog, string[] args)
+    {
+        if (args.Length > 1 && args[1] == "status")
+        {
+            var english = catalog.WebsiteLocales.FirstOrDefault(locale => locale.Locale == "en-US");
+            var total = english?.Strings.Count ?? 0;
+            foreach (var locale in catalog.WebsiteLocales.OrderBy(locale => locale.Locale, StringComparer.Ordinal))
+                Console.WriteLine($"{locale.Locale,-12} {locale.NativeName,-20} {locale.Strings.Count(item => english?.Strings.ContainsKey(item.Key) == true && !string.IsNullOrWhiteSpace(item.Value))}/{total} website strings");
+            Console.WriteLine("Missing or blank translations fall back to English. Developer output always remains English.");
+            return 0;
+        }
+        if (args.Length < 3 || args[1] != "new") return Unknown("translations (expected: translations status or translations new <locale> --name NAME --english-name NAME)");
+        var name = ReadOption(args, "--name") ?? throw new ArgumentException("--name is required, for example Français.");
+        var englishName = ReadOption(args, "--english-name") ?? throw new ArgumentException("--english-name is required, for example French.");
+        var path = WebsiteTranslations.CreateTemplate(catalog, args[2], name, englishName, ReadOption(args, "--direction") ?? "ltr");
+        Console.WriteLine($"Created {Path.GetRelativePath(catalog.RepositoryRoot, path)}. Fill in any values; blank values use English.");
+        Console.WriteLine("Then run validate and submit the language file in a pull request. See docs/contributing/translations.md.");
+        return 0;
+    }
+
     private static int ShowBuildReport(string root)
     {
         var reportPath = Path.Combine(root, "publish-data", "build-report.json");
@@ -286,6 +307,8 @@ public static class WorldGovCommand
         Console.WriteLine("  worldgov trace <incident-id> [--root PATH]");
         Console.WriteLine("  worldgov diagnostics [country-id] [--root PATH]");
         Console.WriteLine("  worldgov standards list [--root PATH]");
+        Console.WriteLine("  worldgov translations status [--root PATH]");
+        Console.WriteLine("  worldgov translations new <locale> --name NAME --english-name NAME [--direction ltr|rtl] [--root PATH]");
         Console.WriteLine("  worldgov build-report [--root PATH]");
         Console.WriteLine("  worldgov real-history [--root PATH]      authentic local git log");
         Console.WriteLine("  worldgov real-blame <file> [--root PATH] authentic local git blame");

@@ -51,6 +51,18 @@
     "Second World War",
     "Europe"
   ],
+  "translations": {
+    "da-DK": {
+      "title": "Nazityskland invaderer og besætter Danmark",
+      "category": "Krig",
+      "evidenceStatus": "Dokumenteret",
+      "historicalSummary": "Nazityskland indledte Operation Weserübung den 9. april 1940 og invaderede og besatte Danmark. Tyske styrker opretholdt besættelsen indtil deres kapitulation i Danmark i maj 1945. Besættelsen begrænsede Danmarks suverænitet. At de danske institutioner fortsatte under dette pres, betød ikke, at besættelsen skete med samtykke, eller at fuld uafhængighed var genoprettet.",
+      "publicSummary": "Besættelsesmagten rapporterer, at kontrollen på tværs af grænsen er operationel. Statuspanelet oplyser ikke, om den befolkning, der bliver regeret over, har givet sit samtykke.",
+      "relationLabels": {
+        "DK-1940-001": "Invasionen og besættelsen set fra Danmarks perspektiv"
+      }
+    }
+  },
   "sourcePath": "countries/germany/incidents/DE-1940-001.json",
   "countryIds": [
     "DE"

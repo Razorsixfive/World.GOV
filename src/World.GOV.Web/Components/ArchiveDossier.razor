@@ -1,0 +1,57 @@
+@inject PortalDataService Data
+
+<section class="panel archive-dossier">
+    <div class="archive-heading">
+        <div><p class="eyebrow">@T("ARCHIVE COPY · FICTION")</p><h2 lang="@DocumentLocale">@Document.Title</h2></div>
+        <span class="archive-stamp @(Unredacted ? "declassified" : "")" lang="en" dir="ltr">@(Unredacted ? "DECLASSIFIED" : HasBeenRevealed ? "RECLASSIFIED" : "CLASSIFIED")</span>
+    </div>
+    <p class="archive-reference"><code>@Document.Id</code></p>
+    <p class="archive-caption">@T("An invented administrative memo based on public sources.")</p>
+    <div class="view-switch archive-controls" role="group" aria-label="@T("Archive presentation")">
+        <button type="button" class="@(!Unredacted ? "selected" : "")" aria-pressed="@(!Unredacted)" @onclick="() => UnredactedChanged.InvokeAsync(false)">@T("Redacted")</button>
+        <button type="button" class="@(Unredacted ? "selected" : "")" aria-pressed="@Unredacted" @onclick="() => UnredactedChanged.InvokeAsync(true)">@T("Unredacted")</button>
+    </div>
+    <dl class="archive-lines" lang="@DocumentLocale">
+        @foreach (var line in Document.Lines)
+        {
+            <div>
+                <dt>@line.Label</dt>
+                <dd>
+                    @if (line.Redacted && !Unredacted)
+                    {
+                        <span class="archive-redaction" role="img" aria-label="@T("Redacted text")" lang="@SelectedLocale"><span aria-hidden="true">████████████████</span></span>
+                    }
+                    else
+                    {
+                        @line.Text
+                    }
+                </dd>
+            </div>
+        }
+    </dl>
+    <p class="archive-status" role="status" lang="@StatusLocale">@StatusMessage</p>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public ArchiveDocument Document { get; set; } = default!;
+    [Parameter] public ArchiveDocument? EnglishDocument { get; set; }
+    [Parameter] public string DocumentLocale { get; set; } = "en-US";
+    [Parameter] public bool Unredacted { get; set; }
+    [Parameter] public EventCallback<bool> UnredactedChanged { get; set; }
+    [CascadingParameter] public string SelectedLocale { get; set; } = "en-US";
+    private bool HasBeenRevealed;
+    private string? PreviousDocumentId;
+    private string? MessageFor(ArchiveDocument? document) => Unredacted ? document?.DeclassifiedMessage :
+        HasBeenRevealed ? document?.ReclassifiedMessage : document?.ClassifiedMessage;
+    private string StatusMessage => MessageFor(Document) ?? MessageFor(EnglishDocument) ??
+        (Unredacted ? T("Full memo displayed.") : T("Redactions applied."));
+    private string StatusLocale => MessageFor(Document) is not null ? DocumentLocale :
+        MessageFor(EnglishDocument) is not null ? "en-US" : SelectedLocale;
+    protected override void OnParametersSet()
+    {
+        if (PreviousDocumentId != Document.Id) HasBeenRevealed = false;
+        HasBeenRevealed |= Unredacted;
+        PreviousDocumentId = Document.Id;
+    }
+    private string T(string english) => Data.Translate(english, SelectedLocale);
+}

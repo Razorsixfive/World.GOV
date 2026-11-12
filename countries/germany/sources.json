@@ -30,6 +30,36 @@
       "accessedDate": "2026-11-09",
       "language": "de-DE",
       "notes": null
+    },
+    {
+      "id": "SRC-DE-004",
+      "title": "Aktueller Begriff: Grundgesetz",
+      "publisher": "Deutscher Bundestag",
+      "url": "https://www.bundestag.de/parlament/grundgesetz/aktueller-begriff-grundgesetz-643586",
+      "publishedDate": "2024-05-22",
+      "accessedDate": "2026-11-12",
+      "language": "de-DE",
+      "notes": "Supports the signing and promulgation in Bonn on 23 May 1949, entry into force during the night of 23–24 May, provisional framing, democratic and federal institutions, and the accession route used in 1990."
+    },
+    {
+      "id": "SRC-DE-005",
+      "title": "BER takes off",
+      "publisher": "Federal Government of Germany",
+      "url": "https://www.bundesregierung.de/breg-en/service/archive/ber-opens-1806626",
+      "publishedDate": "2020-10-30",
+      "accessedDate": "2026-11-12",
+      "language": "en-US",
+      "notes": "Contemporaneous government announcement, published before opening day. Supports the announced opening and staged transfer dates and describes repeated delays; the operator's retrospective chronology in SRC-DE-006 confirms that Terminal 1 actually opened."
+    },
+    {
+      "id": "SRC-DE-006",
+      "title": "Berlin Brandenburg Airport",
+      "publisher": "Flughafen Berlin Brandenburg GmbH",
+      "url": "https://corporate.berlin-airport.de/en/company-media/history/berlin-brandenburg-airport.html",
+      "publishedDate": null,
+      "accessedDate": "2026-11-12",
+      "language": "en-US",
+      "notes": "Operator's chronology: 2010 section for the 2011-to-2012 postponement, 2012 section for withdrawal of the June opening date, and 2020 section for Terminal 1 opening on 31 October, southern runway opening on 4 November, and the end of Tegel flight operations on 8 November."
     }
   ]
 }

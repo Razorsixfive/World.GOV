@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World.GOV website translation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "locale", "nativeName", "englishName", "direction", "strings"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "locale": { "type": "string", "pattern": "^[a-z]{2,3}(?:-[A-Z][a-z]{3})?(?:-[A-Z]{2})?$" },
+    "nativeName": { "type": "string", "minLength": 1 },
+    "englishName": { "type": "string", "minLength": 1 },
+    "direction": { "enum": ["ltr", "rtl"] },
+    "strings": {
+      "type": "object",
+      "propertyNames": { "minLength": 1 },
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

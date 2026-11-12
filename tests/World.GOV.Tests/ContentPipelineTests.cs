@@ -7,7 +7,7 @@ using Xunit;
 
 namespace World.GOV.Tests;
 
-public sealed class ContentPipelineTests : IDisposable
+public sealed partial class ContentPipelineTests : IDisposable
 {
     private readonly string _root = Path.Combine(Path.GetTempPath(), "worldgov-tests-" + Guid.NewGuid().ToString("N"));
     private const string IncidentFile = "countries/denmark/incidents/DK-1849-001.json";
@@ -15,7 +15,7 @@ public sealed class ContentPipelineTests : IDisposable
     public ContentPipelineTests()
     {
         var source = ContentCatalog.FindRepositoryRoot();
-        foreach (var directory in new[] { "countries", "schemas" })
+        foreach (var directory in new[] { "countries", "schemas", "locales" })
             foreach (var file in Directory.EnumerateFiles(Path.Combine(source, directory), "*", SearchOption.AllDirectories))
             {
                 var target = Path.Combine(_root, Path.GetRelativePath(source, file));
@@ -170,6 +170,9 @@ public sealed class ContentPipelineTests : IDisposable
         Assert.Contains(incidents.RootElement.EnumerateArray(), item => item.GetProperty("id").GetString() == "DK-1849-001");
         using var diagnostics = JsonDocument.Parse(File.ReadAllText(Path.Combine(output, "diagnostics", "DE.json")));
         Assert.Contains(diagnostics.RootElement.EnumerateArray(), item => item.GetProperty("incidentId").GetString() == "DK-1849-001");
+        using var timeline = JsonDocument.Parse(File.ReadAllText(Path.Combine(output, "timelines", "DE.json")));
+        var sharedCommit = timeline.RootElement.EnumerateArray().Single(item => item.GetProperty("incidentId").GetString() == "DK-1849-001");
+        Assert.Equal("DE", sharedCommit.GetProperty("country").GetString());
     }
 
     [Fact]

@@ -5,9 +5,9 @@
   "displayName": "Germany",
   "nativeName": "Deutschland",
   "defaultLocale": "en-US",
-  "supportedLocales": ["en-US"],
-  "historicalCoverage": { "startYear": 1940, "endYear": 1990 },
-  "incidentFiles": ["incidents/DE-1940-001.json", "incidents/DE-1990-001.json"],
-  "standardFiles": [],
+  "supportedLocales": ["en-US", "da-DK"],
+  "historicalCoverage": { "startYear": 1940, "endYear": 2020 },
+  "incidentFiles": ["incidents/DE-1940-001.json", "incidents/DE-1949-001.json", "incidents/DE-1990-001.json", "incidents/DE-2020-001.json"],
+  "standardFiles": ["standards/GOV-DE-001.md", "standards/GOV-DE-002.md"],
   "extensionAssembly": null
 }

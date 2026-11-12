@@ -200,6 +200,106 @@
       "accessedDate": "2026-11-09",
       "language": "en-US",
       "notes": "Official statistical yearbook; the EU referendum table reports turnout and percentages of valid votes."
+    },
+    {
+      "id": "SRC-DK-021",
+      "title": "Denmark and NATO",
+      "publisher": "NATO",
+      "url": "https://www.nato.int/en/about-us/nato-history/history-by-theme/my-country-and-nato/denmark-and-nato",
+      "publishedDate": null,
+      "accessedDate": "2026-11-12",
+      "language": "en-US",
+      "notes": "Official country history covering Denmark as a founding member, the 4 April 1949 signing, and its departure from neutrality."
+    },
+    {
+      "id": "SRC-DK-022",
+      "title": "The North Atlantic Treaty",
+      "publisher": "NATO",
+      "url": "https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/1949/04/04/the-north-atlantic-treaty",
+      "publishedDate": "1949-04-04",
+      "accessedDate": "2026-11-12",
+      "language": "en-US",
+      "notes": "Article 5 states each ally's undertaking to take the action it deems necessary. Footnote 3 distinguishes the treaty's entry into force on 24 August 1949 from its signing. The page includes later annotations and amendments."
+    },
+    {
+      "id": "SRC-DK-023",
+      "title": "REGAN Vest – Demokratiets sidste bastion",
+      "publisher": "Nordjyske Museer",
+      "url": "https://nordjyskemuseer.dk/regan-vest-demokratiets-sidste-bastion/",
+      "publishedDate": "2019-10-31",
+      "accessedDate": "2026-11-12",
+      "language": "da-DK",
+      "notes": "Museum account of the bunker's purpose and secret construction, dated 1963–1968. Its end year differs from SRC-DK-024."
+    },
+    {
+      "id": "SRC-DK-024",
+      "title": "4. Regeringsanlægget i Rold Skov",
+      "publisher": "Slots- og Kulturstyrelsen",
+      "url": "https://slks.dk/omraader/kulturarv/bevaringsvaerdige-bygninger-og-miljoeer/bevaringstemaer/kold-krig/4-regeringsanlaegget-i-rold-skov",
+      "publishedDate": null,
+      "accessedDate": "2026-11-12",
+      "language": "da-DK",
+      "notes": "Heritage account; its facts panel dates construction to 1963–1969, differing from the museum. Page marked updated 29 March 2022."
+    },
+    {
+      "id": "SRC-DK-025",
+      "title": "REGAN Vest",
+      "publisher": "Realdania",
+      "url": "https://realdania.dk/projekter/reganvest",
+      "publishedDate": null,
+      "accessedDate": "2026-11-12",
+      "language": "da-DK",
+      "notes": "Participating museum-project funder; reports construction in 1963–1968 and the public museum opening on 13 February 2023. This is not evidence of a specific declassification date."
+    },
+    {
+      "id": "SRC-DK-026",
+      "title": "Founding treaty",
+      "publisher": "NATO",
+      "url": "https://www.nato.int/en/about-us/organization/founding-treaty",
+      "publishedDate": null,
+      "accessedDate": "2026-11-12",
+      "language": "en-US",
+      "notes": "Lists the twelve founding signatories and the Washington signing on 4 April 1949. Page marked updated 2 September 2022."
+    },
+    {
+      "id": "SRC-DK-027",
+      "title": "Pjecen 'Hvis krigen kommer' fra Statsministeriet, 1962",
+      "publisher": "Statsministeriet; reproduced by Danmarkshistorien / Lex",
+      "url": "https://danmarkshistorien.lex.dk/Pjecen_%27Hvis_krigen_kommer%27_fra_Statsministeriet%2C_1962",
+      "publishedDate": null,
+      "accessedDate": "2026-11-12",
+      "language": "da-DK",
+      "notes": "Primary leaflet reproduced in transcription, with an editorial introduction dating household distribution to January 1962. Some illustrations are omitted and editorial additions are bracketed. Original guidance is historical, not current advice."
+    },
+    {
+      "id": "SRC-DK-028",
+      "title": "Civilforsvaret: Notat til indenrigsministeren om pjecen 'Hvis krigen kommer', 6. februar 1962",
+      "publisher": "Civilforsvarsstyrelsen / Rigsarkivet; reproduced by Danmarkshistorien / Lex",
+      "url": "https://danmarkshistorien.lex.dk/Civilforsvaret_Notat_til_indenrigsministeren_om_pjecen_%27Hvis_krigen_kommer%27%2C_6._februar_1962",
+      "publishedDate": "1962-02-06",
+      "accessedDate": "2026-11-12",
+      "language": "da-DK",
+      "notes": "Transcription of the dated Civil Defence memorandum, from Rigsarkivet's Erik Schultz official papers, M-51. Its introduction confirms distribution to all Danish households. The memorandum defends the administration's planning assumptions; it is not an independent effectiveness study."
+    },
+    {
+      "id": "SRC-DK-029",
+      "title": "Fodnotepolitikken og det alternative sikkerhedspolitiske flertal, 1982-1988",
+      "publisher": "Danmarkshistorien / Lex",
+      "url": "https://danmarkshistorien.lex.dk/Fodnotepolitikken_og_det_alternative_sikkerhedspolitiske_flertal%2C_1982-1988",
+      "publishedDate": "2025-03-24",
+      "accessedDate": "2026-11-12",
+      "language": "da-DK",
+      "notes": "Historical account by Peter Yding Brunbech: period, parliamentary mechanism, reservations in NATO texts, and later debate. Used for the descriptive mechanism, without adopting a verdict on the policy's merits or effects."
+    },
+    {
+      "id": "SRC-DK-030",
+      "title": "Final Communiqué — Defence Planning Committee, December 1983",
+      "publisher": "NATO",
+      "url": "https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/1983/12/06/final-communique",
+      "publishedDate": "1983-12-06",
+      "accessedDate": "2026-11-12",
+      "language": "en-US",
+      "notes": "Official text describing the 6–7 December ministerial session. Footnote 1 records Denmark and Greece reserving their positions on paragraph 5, concerning intermediate-range nuclear forces. Evidence of a specific published reservation, not every dispute in the 1982–1988 period."
     }
   ]
 }
